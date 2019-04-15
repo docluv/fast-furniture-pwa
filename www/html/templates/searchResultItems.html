@@ -1,0 +1,17 @@
+﻿
+<script id="searchReultItems" type="text/x-simpleTemplate-template">
+
+    <%for (var index = 0; index < products.length; index++) {%>
+
+    <div class="item-grid-target">
+        <a href="#!product/<%= products[index].Slug%>">
+            <img alt="<%= products[index].Name%>"
+                src="img/mobile/<%= products[index].Photo%>"
+                  class="product-grid-photo">
+            <figcaption class="item-grid-photo-caption"><%= products[index].Name%></figcaption>
+        </a>
+    </div>
+
+    <%}%>
+
+</script>

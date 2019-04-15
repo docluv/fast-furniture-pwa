@@ -1,0 +1,13 @@
+{{#devices}}
+<div class="list-item device-list-item flex flex-row col-12" data-device-type="{{device_type}}"
+    data-device-type-id="{{serialNumber}}">
+    <span class="device-connection fa col-1 {{#usb}}fa-usb{{/usb}}{{#bluetooth}}fa-bluetooth{{/bluetooth}}"></span>
+    <span
+        class="device-type-default fa device-type-icon col-1 {{#device_type_default}}fa-check-square-o{{/device_type_default}}{{^device_type_default}}fa-square-o{{/device_type_default}}"></span>
+    <span
+        class="fa device-type-icon col-1 fa-plug {{#isConnected}}device-open{{/isConnected}}{{^isConnected}}device-not-open{{/isConnected}}"></span>
+    <span class="device-type-title col-7">{{manufacturerName}} {{productName}}</span>
+    <span class="device-type-icon col-1 fa fa-trash device-type-delete"></span>
+    <span class="device-type-icon col-1 fa fa-pencil device-type-edit"></span>
+</div>
+{{/devices}}

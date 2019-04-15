@@ -1,0 +1,24 @@
+﻿<script id="categoryListItem" type="text/x-simpleTemplate-template">
+
+    <%for (var index = 0; index < categories.length; index++) {%>
+
+        <div class="categories-grid-item">
+            <a class="categories-grid-parent-title" href="#!category/<%= categories[index].Slug%>">
+                <%= categories[index].Name%>
+            </a>
+
+            <div class="categories-grid-item-children">
+
+                <%for (var child = 0; child < categories[index].Children.length; child++) {%>
+
+                    <a class="categories-grid-child-title" href="#!category/<%= categories[index].Children[child].Slug%>">
+                        <%= categories[index].Children[child].Name%>
+                    </a>
+
+                    <%}%>
+            </div>
+        </div>
+
+        <%}%>
+
+</script>

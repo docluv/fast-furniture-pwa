@@ -1,0 +1,13 @@
+﻿
+<script id="childCategoryList" type="text/x-simpleTemplate-template">
+
+    <%for (var index = 0; index < Children.length; index++) {%>
+
+    <div class="categories-grid-item-children">
+
+        <a class="categories-grid-child-title" href="#!category/<%= Children[index].Slug%>"><%= Children[index].Name%></a>
+
+    </div>
+    <%}%>
+
+</script>

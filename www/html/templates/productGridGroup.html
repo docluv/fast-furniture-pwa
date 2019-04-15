@@ -1,0 +1,12 @@
+﻿<script id="productGridGroup" type="text/x-simpleTemplate-template">
+
+    <%for (var index = 0; index < groups.length; index++) {%>
+    <div class="item-grid-group">
+        <h1 class="item-grid-group-title"><%= groups[index].Name%></h1>
+
+        <div class="item-grid-group-items group-items-<%= groups[index].Name%>"></div>
+
+    </div>
+
+    <%}%>
+</script>

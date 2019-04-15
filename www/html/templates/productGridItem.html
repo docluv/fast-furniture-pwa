@@ -1,0 +1,30 @@
+﻿<script id="productGridItem" type="text/x-simpleTemplate-template">
+
+    <%for (var index = 0; index < products.length; index++) {%>
+
+    <div 
+             <%if(index === "0"){%>
+            class="item-grid-target-first"
+            <%}else{%>
+             class="item-grid-target"
+            <%}%>>
+        <a href="#!product/<%= products[index].Slug%>">
+            <img alt="<%= products[index].Name%>" 
+                                <%if(index === "0"){%>
+                src="img/display/<%= products[index].Photo%>" 
+                <%}else{%>
+                src="img/mobile/<%= products[index].Photo%>"
+                <%}%> 
+                srcset="img/thumb/<%= products[index].Photo%> 116w,
+                        img/mobile/<%= products[index].Photo%> 300w,
+                        img/display/<%= products[index].Photo%> 400w,
+                        img/originals/<%= products[index].Photo%> 1000w"
+
+                  class="product-grid-photo">
+            <figcaption class="item-grid-photo-caption"><%= products[index].Name%></figcaption>
+        </a>
+    </div>
+
+    <%}%>
+
+</script>

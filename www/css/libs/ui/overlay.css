@@ -1,0 +1,131 @@
+/* Mixin */
+/* Complimentary Color Scheme */
+/* Subtle Color Scheme */
+/* -- Begin Close Button -- */
+.overlay-close {
+  width: 36px;
+  height: 36px;
+  vertical-align: top;
+  margin: 3% 3% 0 3%;
+  text-align: center;
+  line-height: 36px;
+  z-index: 999;
+  position: absolute;
+  right: 2%;
+}
+.overlay-close-wrapper {
+  width: 36px;
+  height: 36px;
+  display: block;
+  margin: 0;
+  position: relative;
+}
+.overlay-close-bar {
+  background-color: transparent;
+}
+.overlay-close-bar:before,
+.overlay-close-bar:after {
+  cursor: pointer;
+  border-radius: 1px;
+  height: 2px;
+  top: 2px;
+  width: 30px;
+  background: #fff;
+  position: absolute;
+  display: block;
+  content: '';
+  bottom: 25px;
+  transition: all 500ms ease-in-out;
+}
+.overlay-close-bar:before {
+  transform: rotate(45deg);
+}
+.overlay-close-bar:after {
+  transform: rotate(-45deg);
+}
+/* -- End Close Button -- */
+.btn-newsletter-subscribe {
+  background-color: #8ABA49;
+  border-color: #8ABA49;
+  transition: all ease-in-out 300ms 0s;
+}
+.btn-newsletter-subscribe:hover {
+  background-color: #9ec865;
+  border-color: #9ec865;
+  color: #fff;
+}
+.lead-magnet-overlay {
+  position: fixed;
+  top: 0;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  padding-top: 5%;
+  background: url('https://love2dev.com/img/popup-overlay-bkg.jpg') no-repeat center center fixed;
+  -webkit-background-size: cover;
+  -moz-background-size: cover;
+  -o-background-size: cover;
+  background-size: cover;
+  color: #fff;
+  transform: translate3d(0, -175%, 0);
+  transition: all 2s;
+  z-index: 9999;
+}
+.lead-magnet-overlay h1,
+.lead-magnet-overlay h2,
+.lead-magnet-overlay h3 {
+  color: #fff;
+}
+.overlay-container {
+  max-width: 576px;
+  padding-right: 15px;
+  padding-left: 15px;
+  margin-right: auto;
+  margin-left: auto;
+}
+.show-overlay-magnet .lead-magnet-overlay {
+  transform: translate3d(0, 0, 0);
+}
+.overlay-message {
+  display: none;
+}
+@media (min-width: 768px) {
+  .offset-overlay-1 {
+    margin-left: 8.333333%;
+  }
+  .overlay-container {
+    max-width: 720px;
+  }
+  .overlay-message {
+    display: block;
+  }
+}
+@media (min-width: 992px) {
+  .overlay-container {
+    max-width: 940px;
+  }
+  .overlay-close {
+    width: 72px;
+    height: 72px;
+    line-height: 72px;
+  }
+  .overlay-close-wrapper {
+    width: 72px;
+    height: 72px;
+  }
+  .overlay-close-bar:before,
+  .overlay-close-bar:after {
+    width: 60px;
+  }
+}
+@media (min-width: 1024px) {
+  .lead-magnet-overlay h1 {
+    overflow: hidden;
+    margin: 0 auto;
+  }
+}
+@media (min-width: 1200px) {
+  .overlay-container {
+    max-width: 1140px;
+  }
+}

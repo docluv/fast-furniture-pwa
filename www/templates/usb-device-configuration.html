@@ -1,0 +1,100 @@
+<div class="row">
+    <h3><span
+            class="device-connection fa {{#usb}}fa-usb{{/usb}}{{#bluetooth}}fa-bluetooth{{/bluetooth}}"></span>{{manufacturerName}}
+        {{productName}} <span
+            class="fa device-type-icon {{#device_type_receipt_printer}}fa-print{{/device_type_receipt_printer}}{{#device_type_ticket_printer}}fa-ticket{{/device_type_ticket_printer}}{{#device_type_card_printer}}fa-id-card{{/device_type_card_printer}}"></span>
+    </h3>
+</div>
+<div class="row">
+    <div class="form-group mr-4">
+        <label class="form-label" for="vendorName">Vendor</label>
+        <input class="form-input" type="text" name="vendorName" id="vendorName" value="{{manufacturerName}}">
+    </div>
+    <div class="form-group">
+        <label class="form-label" for="productName">Product</label>
+        <input class="form-input" type="text" name="productName" id="productName" value="{{productName}}">
+    </div>
+</div>
+<div class="row">
+    <div class="form-check">
+        <input class="form-check-input" type="radio" name="device-type" id="receipt_printer" value="receiptPrinters"
+            {{#receiptPrinters}} checked="checked" {{/receiptPrinters}}>
+        <label class="form-check-label" for="receipt_printer">Receipt Printer</label>
+    </div>
+    <div class="form-check">
+        <input class="form-check-input" type="radio" name="device-type" id="ticket_printer" value="ticketPrinters"
+            {{#ticketPrinters}} checked="checked" {{/ticketPrinters}}>
+        <label class="form-check-label" for="ticket_printer">Ticket Printer</label>
+    </div>
+    <div class="form-check">
+        <input class="form-check-input" type="radio" name="device-type" id="card_printer" value="cardPrinters"
+            {{#cardPrinters}} checked="checked" {{/cardPrinters}}>
+        <label class="form-check-label" for="card_printer">Card Printer</label>
+    </div>
+</div>
+<div class="row">
+    <div class="form-check">
+        <input class="form-check-input" type="checkbox" value="true" id="default_device" {{#device_type_default}}
+            checked="checked" {{/device_type_default}}>
+        <label class="form-check-label" for="default_device">Default Device</label>
+    </div>
+</div>
+<div class="row cash-drawer-row {{^receiptPrinters}}hidden{{/receiptPrinters}}">
+    <div class="form-check">
+        <input class="form-check-input" type="checkbox" value="true" id="cash_drawer" {{#cash_drawer}} checked="checked"
+            {{/cash_drawer}}>
+        <label class="form-check-label" for="cash_drawer">Has Cash Drawer</label>
+    </div>
+    <div class="form-check">
+        <input class="form-check-input" type="radio" name="cash_drawer_pin" id="cash_drawer_pin_2" value="0"
+            {{#cash_drawer_pin_2}} checked="checked" {{/cash_drawer_pin_2}}>
+        <label class="form-check-label" for="cash_drawer_pin_2">Pin 2</label>
+    </div>
+    <div class="form-check">
+        <input class="form-check-input" type="radio" name="cash_drawer_pin" id="cash_drawer_pin_5" value="1"
+            {{#cash_drawer_pin_5}} checked="checked" {{/cash_drawer_pin_5}}>
+        <label class="form-check-label" for="cash_drawer_pin_5">Pin 5</label>
+    </div>
+</div>
+<div class="row form-group float-right col-12">
+    <div class="btn btn-action btn-cancel-device mr-2">Cancel</div>
+    <div class="btn btn-action btn-update-device mr-2" disabled="disabled" data-device-type-id="{{serialNumber}}">Update
+    </div>
+</div>
+<div class="row">
+    <h4>Configuration</h4>
+</div>
+<div class="row">
+    {{#configurations}}
+    <div class="device-configuration-row">
+        <h4><span
+                class="fa {{#current_Config}}fa-check-square-o{{/current_Config}}{{^current_Config}}fa fa-square-o{{/current_Config}}"></span>
+            {{configurationName}} - {{configurationValue}}</h4>
+        {{#interfaces}}
+        <div class="row device-config-interfaces">
+            <span
+                class="fa {{#current_Interface}}fa-check-square-o{{/current_Interface}}{{^current_Interface}}fa-square-o{{/current_Interface}}"></span>
+            <span class="fa {{#claimed}}fa-thumbs-up{{/claimed}}"></span>
+            <span class="row-title">{{interfaceNumber}}</span>
+            {{#alternates}}
+            <div class="row">
+                <div class="row">Interface {{interfaceName}}</div>
+                <div class="row">Class {{interfaceClass}}</div>
+                <div class="row">Protocol {{interfaceProtocol}}</div>
+                <div class="row">Subclass {{interfaceSubclass}}</div>
+                <div class="row">
+                    <h5>End Points</h5>
+                    {{#endpoints}}
+                    <div class="row">Direction {{direction}}</div>
+                    <div class="row">Number {{endpointNumber}}</div>
+                    <div class="row">Packet Size {{packetSize}}</div>
+                    <div class="row">Type {{type}}</div>
+                    {{/endpoints}}
+                </div>
+            </div>
+            {{/alternates}}
+        </div>
+        {{/interfaces}}
+    </div>
+    {{/configurations}}
+</div>

@@ -1,0 +1,55 @@
+.ad2hs-prompt {
+    display: none;
+    width: 100%;
+    line-height: 2em;
+    background-color: #fff;
+    color: #333;
+    text-align: center;
+    text-decoration: none;
+    padding: 5% 0;
+    min-height: 10%;
+    position: fixed;
+    bottom: 0;
+    justify-content: flex-end;
+    flex-direction: column;
+    flex-grow: 1;
+    animation-duration: 1s;
+    animation-fill-mode: both;
+  }
+  
+  .ad2hs-prompt:hover {
+    box-shadow: 0 0 0 0 0.25rem;
+  }
+  
+  .ad2hs-prompt a:focus {
+    text-decoration: underline;
+  }
+  
+  .ad2hs-prompt:focus-within {
+    box-shadow: 0 0 0 0.25rem;
+  }
+  
+  .ad2hs-prompt:focus-within a:focus {
+    text-decoration: none;
+  }
+  
+  .ad2hs-prompt H1 {
+    font-size: 2em;
+    text-align: center;
+    width: 100%;
+  }
+  
+  .ad2hs-prompt .btn {
+    align-self: flex-end;
+    margin-right: 5%;
+  }
+  
+  .ad2hs-prompt > * + * {
+    margin-top: 0.75rem;
+  }
+  
+  .ad2hs-prompt :last-child {
+    margin-top: auto;
+    margin-bottom: 0.75rem;
+  }
+  

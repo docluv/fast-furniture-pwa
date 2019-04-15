@@ -1,0 +1,23 @@
+﻿
+    /* TEAM */
+
+    Author: Chris Love.
+
+	Company: Love2Dev.
+
+    Site: http://furniture.love2dev.com/.
+
+    Twitter: @ChrisLove.
+
+    Location: USA.
+	
+		
+    /* SITE */
+
+    Last update: 04&#x2F;29&#x2F;2015.
+
+    Standards: HTML5, CSS3, ECMAScript 5
+
+    Components: spajs, deeptissue, appbar, shelf
+
+    Software: Raw APIs and a proper collection of microjs libraries

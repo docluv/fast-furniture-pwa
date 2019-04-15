@@ -1,0 +1,67 @@
+Projects:
+    
+    Push Notifications:
+        ✔ feature detection @done (4/11/2019, 9:00:02 AM)
+        ☐ Subscription
+        ☐ Time Delay Prompt
+        ☐ Movement Trigger/IntersectionObserver
+        ☐ add node module for demo purposes
+        ☐ Send Notification on Order Complete
+        ☐ Send Notification 1 minute later to indicate shipment
+
+    Web Share:
+        ✔ Feature Detect @done (4/11/2019, 8:51:31 AM)
+        ✔ markup snippet @done (4/11/2019, 8:51:38 AM)
+        ☐ reference share.js from category and product page
+
+    Web Payments:
+        ☐ Feature Detect
+        ☐ Payment Request API module
+        ☐ Populate Order Details
+        ☐ Capture Payment Info
+        ☐ Create Payment Handler Module
+        ☐ Register Payment Handler
+        ☐ 'In Store/Branded' Credit Demo
+
+    USB Receipt Printing:
+        ☐ Feature Detect
+        ✔ USB Library @done (4/11/2019, 8:52:50 AM)
+        ✔ ESC/POS Library @done (4/11/2019, 8:52:52 AM)
+        ☐ Add Receipt Print after Payment Received
+        ☐ Wawa Receipt Demo
+        ☐ Reference USB libraries from settings page
+        ☐ reference USB libraries from Cart page
+
+    Geo-Location:
+        ☐ Polite Feature Prompt
+        ☐ Fake Store Locations
+        ☐ generate fake store pages
+    
+    WebAuthn:
+        ☐ Feature Detection
+        ☐ Profile Setup
+        ☐ Biometric Account Sync
+        ☐ Auto Login
+
+    Offline:
+        ✔ Product Page @done (4/11/2019, 8:56:11 AM)
+        ☐ placeholder image
+        ☐ Category
+        ☐ Cart
+
+    Background Sync:
+        ☐ Order Complete
+
+    Forms:
+        ✔ Input Types to Contact form @done (4/11/2019, 8:58:49 AM)
+        ✔ autofocus contact form @done (4/11/2019, 8:58:52 AM)
+        ☐ search box using datalist for auto suggest
+        ☐ Validation of Contact form
+
+    QR/Barcode Reader:
+        ☐ Locate Product
+        ☐ Open Order
+        ☐ add QR/barcode button to site header
+        ☐ create qr code search service & load on every page
+        
+

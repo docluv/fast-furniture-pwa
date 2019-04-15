@@ -1,0 +1,22 @@
+Project:
+
+    ☐ fix footer logo width
+
+    Login:
+        ☐ Use Credential Manager API
+        ☐ change login form logo to FF
+        ☐ change login form background image for acryllic look
+        ☐ Add WebAuthn Login/Windows Hello
+
+    Payment:
+        ☐ Payment Request API on cart
+
+    Push:
+        ☐ Verify Push Handler Renders Data Correctly
+        ☐ Verify Registration
+        ☐ Verify Settings Management
+
+
+Archive:
+
+

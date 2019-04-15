@@ -1,0 +1,32 @@
+﻿<script id="shoppingCartTemplate" type="text/x-simpleTemplate-template">
+
+    <div class="shopping-cart-items">
+
+    <%for (var orderItem = 0; orderItem < Items.length; orderItem++) {%>
+
+        <div class="shopping-cart-item">
+            <a href="#!product/<%= Items[orderItem].Slug%>">
+                <img alt="<%= Items[orderItem].Name%>" src="img/thumb/<%= Items[orderItem].Photos.Thumb%>" class="cart-item-photo">
+                <span class="cart-item-name type-large"><%= Items[orderItem].Name%></span>
+            </a>
+            <div class="cart-item-qty type-medium" data-id="<%= Items[orderItem].Id%>"><%= Items[orderItem].Qty%></div>
+            <div class="cart-item-price type-medium"><%= Items[orderItem].Price%></div>
+            <div class="cart-item-delete">X</div>
+        </div>
+
+        <%}%>
+
+    </div>
+    <div class=" text-right col-sm-10 cart-actions">
+        <button class="btn btn-link btn-update">Update</button>
+        <a href="#!account/payment" class="btn btn-default btn-checkout">Check Out</a>
+    </div>
+
+    <div class="cart-totals">
+        <div class="cart-sales-tax"><label>Sales Tax: </label><%= salesTax%></div>
+        <div class="cart-sales-shipping"><label>Shipping: </label><%= shipping%></div>
+        <div class="cart-grand-total"><label>Grand Total: </label><%= grandTotal%></div>
+    </div>
+
+
+</script>

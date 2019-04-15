@@ -1,0 +1,692 @@
+<!doctype html>
+<html lang="en">
+
+<head>
+    <base href="/">
+    <!-- Stylesheets -->
+    <style>
+        .btn,
+        img {
+            vertical-align: middle
+        }
+
+        .btn,
+        [role=button] {
+            cursor: pointer
+        }
+
+        .nav>li,
+        .nav>li>a {
+            position: relative
+        }
+
+        .col-xs-1,
+        .col-xs-10,
+        .col-xs-11,
+        .col-xs-12,
+        .col-xs-2,
+        .col-xs-3,
+        .col-xs-4,
+        .col-xs-5,
+        .col-xs-6,
+        .col-xs-7,
+        .col-xs-8,
+        .col-xs-9,
+        .nav-pills>li {
+            float: left
+        }
+
+        .btn,
+        .navbar-toggle {
+            background-image: none
+        }
+
+        html {
+            font-family: sans-serif;
+            -webkit-text-size-adjust: 100%;
+            -ms-text-size-adjust: 100%
+        }
+
+        article,
+        aside,
+        details,
+        figcaption,
+        figure,
+        footer,
+        header,
+        hgroup,
+        main,
+        menu,
+        nav,
+        section,
+        summary {
+            display: block
+        }
+
+        a {
+            background-color: transparent;
+            color: #337ab7;
+            text-decoration: none
+        }
+
+        h1 {
+            margin: .67em 0
+        }
+
+        img {
+            border: 0
+        }
+
+        button,
+        input,
+        optgroup,
+        select,
+        textarea {
+            margin: 0;
+            font: inherit;
+            color: inherit
+        }
+
+        button,
+        html input[type=button],
+        input[type=reset],
+        input[type=submit] {
+            -webkit-appearance: button;
+            cursor: pointer
+        }
+
+        textarea {
+            overflow: auto
+        }
+
+        *,
+        :after,
+        :before {
+            -webkit-box-sizing: border-box;
+            -moz-box-sizing: border-box;
+            box-sizing: border-box
+        }
+
+        html {
+            font-size: 10px;
+            -webkit-tap-highlight-color: transparent
+        }
+
+        body {
+            margin: 0;
+            font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+            font-size: 14px;
+            line-height: 1.42857143;
+            color: #333;
+            background-color: #fff
+        }
+
+        button,
+        input,
+        select,
+        textarea {
+            font-family: inherit;
+            font-size: inherit;
+            line-height: inherit
+        }
+
+        .carousel-inner>.item>a>img,
+        .carousel-inner>.item>img,
+        .img-fluid,
+        .thumbnail a>img,
+        .thumbnail>img {
+            display: block;
+            max-width: 100%;
+            height: auto
+        }
+
+        .h1,
+        .h2,
+        .h3,
+        .h4,
+        .h5,
+        .h6,
+        h1,
+        h2,
+        h3,
+        h4,
+        h5,
+        h6 {
+            font-family: inherit;
+            font-weight: 500;
+            line-height: 1.1;
+            color: inherit
+        }
+
+        .h1,
+        .h2,
+        .h3,
+        h1,
+        h2,
+        h3 {
+            margin-top: 20px;
+            margin-bottom: 10px
+        }
+
+        .h1,
+        h1 {
+            font-size: 36px
+        }
+
+        .h2,
+        h2 {
+            font-size: 30px
+        }
+
+        .h3,
+        h3 {
+            font-size: 24px
+        }
+
+        p {
+            margin: 0 0 10px
+        }
+
+        .page-header {
+            padding-bottom: 9px;
+            margin: 40px 0 20px;
+            border-bottom: 1px solid #eee
+        }
+
+        ol,
+        ul {
+            margin-top: 0;
+            margin-bottom: 10px
+        }
+
+        .container {
+            padding-right: 15px;
+            padding-left: 15px;
+            margin-right: auto;
+            margin-left: auto
+        }
+
+        .row {
+            margin-right: -15px;
+            margin-left: -15px
+        }
+
+        .col-lg-1,
+        .col-lg-10,
+        .col-lg-11,
+        .col-lg-12,
+        .col-lg-2,
+        .col-lg-3,
+        .col-lg-4,
+        .col-lg-5,
+        .col-lg-6,
+        .col-lg-7,
+        .col-lg-8,
+        .col-lg-9,
+        .col-md-1,
+        .col-md-10,
+        .col-md-11,
+        .col-md-12,
+        .col-md-2,
+        .col-md-3,
+        .col-md-4,
+        .col-md-5,
+        .col-md-6,
+        .col-md-7,
+        .col-md-8,
+        .col-md-9,
+        .col-sm-1,
+        .col-sm-10,
+        .col-sm-11,
+        .col-sm-12,
+        .col-sm-2,
+        .col-sm-3,
+        .col-sm-4,
+        .col-sm-5,
+        .col-sm-6,
+        .col-sm-7,
+        .col-sm-8,
+        .col-sm-9,
+        .col-xs-1,
+        .col-xs-10,
+        .col-xs-11,
+        .col-xs-12,
+        .col-xs-2,
+        .col-xs-3,
+        .col-xs-4,
+        .col-xs-5,
+        .col-xs-6,
+        .col-xs-7,
+        .col-xs-8,
+        .col-xs-9 {
+            position: relative;
+            min-height: 1px;
+            padding-right: 15px;
+            padding-left: 15px
+        }
+
+        .col-xs-12 {
+            width: 100%
+        }
+
+        .col-xs-8 {
+            width: 66.66666667%
+        }
+
+        .form-group {
+            margin-bottom: 15px
+        }
+
+        .btn,
+        .nav {
+            margin-bottom: 0
+        }
+
+        .btn {
+            display: inline-block;
+            padding: 6px 12px;
+            font-size: 14px;
+            font-weight: 400;
+            line-height: 1.42857143;
+            text-align: center;
+            white-space: nowrap;
+            -ms-touch-action: manipulation;
+            touch-action: manipulation;
+            -webkit-user-select: none;
+            -moz-user-select: none;
+            -ms-user-select: none;
+            user-select: none;
+            border: 1px solid transparent;
+            border-radius: 4px
+        }
+
+        .btn-success {
+            color: #fff;
+            background-color: #5cb85c;
+            border-color: #4cae4c
+        }
+
+        .btn-info {
+            color: #fff;
+            background-color: #5bc0de;
+            border-color: #46b8da
+        }
+
+        .btn-group-sm>.btn,
+        .btn-sm {
+            padding: 5px 10px;
+            font-size: 12px;
+            line-height: 1.5;
+            border-radius: 3px
+        }
+
+        .collapse {
+            display: none
+        }
+
+        .nav>li,
+        .nav>li>a,
+        .navbar-brand>img {
+            display: block
+        }
+
+        .nav {
+            padding-left: 0;
+            list-style: none
+        }
+
+        .nav>li>a {
+            padding: 10px 15px
+        }
+
+        .nav-pills>li>a {
+            border-radius: 4px
+        }
+
+        .navbar,
+        .navbar-toggle {
+            position: relative;
+            border: 1px solid transparent
+        }
+
+        .nav-pills>li+li {
+            margin-left: 2px
+        }
+
+        .nav-stacked>li {
+            float: none
+        }
+
+        .nav-stacked>li+li {
+            margin-top: 2px;
+            margin-left: 0
+        }
+
+        .navbar {
+            min-height: 50px;
+            margin-bottom: 20px
+        }
+
+        .navbar-collapse {
+            padding-right: 15px;
+            padding-left: 15px;
+            overflow-x: visible;
+            -webkit-overflow-scrolling: touch;
+            border-top: 1px solid transparent;
+            -webkit-box-shadow: inset 0 1px 0 rgba(255, 255, 255, .1);
+            box-shadow: inset 0 1px 0 rgba(255, 255, 255, .1)
+        }
+
+        .container-fluid>.navbar-collapse,
+        .container-fluid>.navbar-header,
+        .container>.navbar-collapse,
+        .container>.navbar-header {
+            margin-right: -15px;
+            margin-left: -15px
+        }
+
+        .navbar-brand {
+            float: left;
+            height: 50px;
+            padding: 15px;
+            font-size: 18px;
+            line-height: 20px
+        }
+
+        .navbar-toggle {
+            float: right;
+            padding: 9px 10px;
+            margin-top: 8px;
+            margin-right: 15px;
+            margin-bottom: 8px;
+            background-color: transparent;
+            border-radius: 4px
+        }
+
+        .navbar-toggle .icon-bar {
+            display: block;
+            width: 22px;
+            height: 2px;
+            border-radius: 1px
+        }
+
+        .navbar-toggle .icon-bar+.icon-bar {
+            margin-top: 4px
+        }
+
+        .navbar-btn {
+            margin-top: 8px;
+            margin-bottom: 8px
+        }
+
+        .navbar-default {
+            background-color: #f8f8f8;
+            border-color: #e7e7e7
+        }
+
+        .navbar-default .navbar-brand {
+            color: #777
+        }
+
+        .navbar-default .navbar-toggle {
+            border-color: #ddd
+        }
+
+        .navbar-default .navbar-toggle .icon-bar {
+            background-color: #888
+        }
+
+        .navbar-default .navbar-collapse,
+        .navbar-default .navbar-form {
+            border-color: #e7e7e7
+        }
+
+        .jumbotron {
+            padding-top: 30px;
+            padding-bottom: 30px;
+            margin-bottom: 30px;
+            color: inherit;
+            background-color: #eee
+        }
+
+        .jumbotron .container {
+            max-width: 100%
+        }
+
+        .btn-group-vertical>.btn-group:after,
+        .btn-group-vertical>.btn-group:before,
+        .btn-toolbar:after,
+        .btn-toolbar:before,
+        .clearfix:after,
+        .clearfix:before,
+        .container-fluid:after,
+        .container-fluid:before,
+        .container:after,
+        .container:before,
+        .dl-horizontal dd:after,
+        .dl-horizontal dd:before,
+        .form-horizontal .form-group:after,
+        .form-horizontal .form-group:before,
+        .modal-footer:after,
+        .modal-footer:before,
+        .modal-header:after,
+        .modal-header:before,
+        .nav:after,
+        .nav:before,
+        .navbar-collapse:after,
+        .navbar-collapse:before,
+        .navbar-header:after,
+        .navbar-header:before,
+        .navbar:after,
+        .navbar:before,
+        .pager:after,
+        .pager:before,
+        .panel-body:after,
+        .panel-body:before,
+        .row:after,
+        .row:before {
+            display: table;
+            content: " "
+        }
+
+        .btn-group-vertical>.btn-group:after,
+        .btn-toolbar:after,
+        .clearfix:after,
+        .container-fluid:after,
+        .container:after,
+        .dl-horizontal dd:after,
+        .form-horizontal .form-group:after,
+        .modal-footer:after,
+        .modal-header:after,
+        .nav:after,
+        .navbar-collapse:after,
+        .navbar-header:after,
+        .navbar:after,
+        .pager:after,
+        .panel-body:after,
+        .row:after {
+            clear: both
+        }
+
+        .pull-right {
+            float: right !important
+        }
+    </style>
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400italic,700italic,400,600,700,800' rel='stylesheet' type='text/css'>
+    <link href='https://fonts.googleapis.com/css?family=Open+Sans+Condensed:700' rel='stylesheet' type='text/css'>
+    <link href="css/site.css" rel="stylesheet">
+    <title>Fast Furniture - Your Progressive Web App Demonstration Site</title>
+    <!-- Disable tap highlight on IE -->
+    <meta name="msapplication-tap-highlight" content="no">
+    <!-- Web Application Manifest -->
+    <link rel="manifest" href="manifest.json">
+    <!-- Add to homescreen for Chrome on Android -->
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="application-name" content="Fast Furniture">
+    <link rel="icon" sizes="192x192" href="images/touch/chrome-touch-icon-192x192.png">
+    <!-- Add to homescreen for Safari on iOS -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="black">
+    <meta name="apple-mobile-web-app-title" content="Fast Furniture">
+    <link rel="apple-touch-icon" href="images/touch/apple-touch-icon.png">
+    <!-- Tile icon for Win8 (144x144 + tile color) -->
+    <meta name="msapplication-TileImage" content="images/touch/ms-touch-icon-144x144-precomposed.png">
+    <meta name="msapplication-TileColor" content="#fff">
+    <!-- Color the status bar on mobile devices -->
+    <meta name="theme-color" content="#F6911E">
+    <meta name="description" content="{{description}}">
+    <!-- Mobile Meta -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Favicon -->
+    <link href="favicon.ico" rel="shortcut icon">
+    <link href="humans.txt" rel="author">
+</head>
+
+<body>
+    <header class="primary-header">
+        <nav class="navbar fixed-top navbar-expand-lg navbar-light">
+            <a href="/" class="navbar-brand">
+                <img src="/img/fast-furniture-logo.gif" alt="Fast Furniture" class="img-fluid">
+            </a>
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false"
+                aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+            </button>
+            <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="nav navbar-nav justify-content-end">
+                    <li class="nav-item">
+                        <a href="/categories/" class="nav-link">Categories</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="/contact/" class="nav-link">Contact</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="/about/" class="nav-link">About</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="/login/" class="nav-link">Login</a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="/cart/" class="nav-link">
+                            <i class="fa fa-shopping-cart"></i>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="/settings/" class="nav-link">
+                            <i class="fa fa-cog" aria-hidden="true"></i>
+                        </a>
+                    </li>
+                </ul>
+            </div>
+        </nav>
+    </header>
+    <section>
+        <img src="" alt="fetch image example" class="fetch-image">
+    </section>
+
+    <footer class="main-footer">
+        <div class="container">
+            <div class="row">
+                <div class="col-md-4 col-sm-6">
+                    <!-- edit footer logo here -->
+                    <a href="#" class="logo col-sm-8">
+                        <img src="img/fast-furniture-logo.gif" class="img-fluid" alt="Fast Furniture">
+                    </a>
+                    <div class="col-sm-12 text">
+                        <p>
+                            <i class="fa fa-map-pin"></i> 354 MAIN STREET | ANYTOWN USA | 11111</p>
+                        <p>
+                            <i class="fa fa-phone"></i>
+                            <a href="tel:9192515067">Phone : (919) 251-5067</a>
+                        </p>
+                        <p>
+                            <i class="fa fa-envelope"></i> E-mail :
+                            <a href="mailto:info@love2dev.com">info@love2dev.com</a>
+                        </p>
+                    </div>
+                    <span class="col-sm-12 social-wrapper">
+                        <a href="http://twitter.com/chrislove" class="social-icon fa fa-twitter"></a>
+                        <a href="https://www.facebook.com/love2dev/" class="social-icon fa fa-facebook"></a>
+                        <a target="_blank" href="https://plus.google.com/b/110904107389779237581/?pageId=110904107389779237581">
+                            <i class="fa fa-google-plus"></i>
+                        </a>
+                        <a target="_blank" href="https://www.linkedin.com/in/love2dev">
+                            <i class="fa fa-linkedin"></i>
+                        </a>
+                        <a target="_blank" href="https://www.youtube.com/channel/UC3mfh2MN-5D-zOyiRLp9H6g">
+                            <i class="fa fa-youtube-play"></i>
+                        </a>
+                        <a target="_blank" href="https://www.pinterest.com/docluv/">
+                            <i class="fa fa-pinterest"></i>
+                        </a>
+                    </span>
+                </div>
+                <div class="col-sm-6 col-md-4">
+                    <div class="footer-content">
+                        <h2>Links</h2>
+                        <nav>
+                            <ul class="nav flex-column">
+                                <li>
+                                    <a href="/">Home</a>
+                                </li>
+                                <li>
+                                    <a href="livingroom/">Living Room</a>
+                                </li>
+                                <li>
+                                    <a href="bedroom/">Bed Room</a>
+                                </li>
+                                <li>
+                                    <a href="office/">Office</a>
+                                </li>
+                                <li>
+                                    <a href="about/">About</a>
+                                </li>
+                                <li>
+                                    <a href="privacy/">Privacy Policy</a>
+                                </li>
+                                <li>
+                                    <a href="shoppingcart/">Shopping Cart</a>
+                                </li>
+                                <li>
+                                    <a href="contact/">Contact</a>
+                                </li>
+                            </ul>
+                        </nav>
+                    </div>
+                </div>
+                <div class="col-md-4 col-sm-12">
+                    <!-- begin newsletter form area -->
+                    <h3>Contact Us</h3>
+                    <div class="subscribe">
+                        <form action="/" method="post" name="footer-contact">
+                            <div class="col-sm-11 form-group">
+                                <input class="col-xs-12" type="text" placeholder="Name" name="contact-name" />
+                            </div>
+                            <div class="col-sm-11 form-group">
+                                <input class="col-xs-12 col-sm-12" type="email" placeholder="Email Address" name="contact-email" />
+                            </div>
+                            <div class="col-sm-11 form-group">
+                                <textarea class="col-xs-12 col-sm-12" rows="3" name="contact-message"></textarea>
+                            </div>
+                            <div class="col-sm-11 form-group">
+                                <input type="submit" value="Connect" class="btn btn-info pull-right" />
+                            </div>
+                        </form>
+                    </div>
+                    <!-- /end newsletter form area -->
+                </div>
+            </div>
+        </div>
+    </footer>
+    <script>
+        var scripts = ["js/jquery.small.js",
+            "js/bootstrap.min.js",
+            "js/libs/quagga.min.js","js/app/app.js",
+            "js/home.js"
+        ];
+    </script>
+
+    <script src="js/app.bootstrap.js"></script>
+</body>
+
+</html>

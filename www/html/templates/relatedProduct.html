@@ -1,0 +1,14 @@
+﻿<script id="relatedProduct" type="text/x-simpleTemplate-template">
+
+    <%for (var index = 0; index < Related.length; index++) {%>
+
+    <div class="related-products-target">
+        <a href="#!product/<%= Related[index].Slug%>">
+            <img alt="Product Name" src="img/thumb/<%= Related[index].Photos.Thumb%>" class="replated-product-photo">
+            <figcaption class="related-products-photo-caption"><%= Related[index].Name%></figcaption>
+        </a>
+    </div>
+
+    <%}%>
+
+</script>

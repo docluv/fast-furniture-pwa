@@ -1,0 +1,41 @@
+﻿<script id="categoryGridItem" type="text/x-simpleTemplate-template">
+
+    <%for (var category = 0; category < categories.length; category++) {%>
+
+    <div class="item-grid-group">
+        <a class="item-grid-group-title" href="#!category/<%= categories[category].Slug%>"><%= categories[category].Name%> ></a>
+
+        <div class="product-wrapper">
+            <%for (var index = 0; index < categories[category].Products.length; index++) {%>
+
+            <div
+             <%if(index === "0"){%>
+            class="item-grid-target-first"
+            <%}else{%>
+             class="item-grid-target"
+            <%}%>>
+            <a href="#!product/<%= categories[category].Products[index].Slug%>">
+                <div class="item-grid-item-wrapper">
+
+                    <img alt="<%= categories[category].Products[index].Name%>" class="product-grid-photo"
+                    <%if(index === "0"){%>
+                    src="img/display/<%= categories[category].Products[index].Photo%>"
+                    <%}else{%>
+                    src="img/mobile/<%= categories[category].Products[index].Photo%>"
+                    <%}%>
+                    srcset="img/thumb/<%= categories[category].Products[index].Photo%> 116w,
+                            img/mobile/<%= categories[category].Products[index].Photo%> 300w,
+                            img/display/<%= categories[category].Products[index].Photo%> 400w,
+                            img/originals/<%= categories[category].Products[index].Photo%> 1000w"
+                    >
+                    </div>
+                    <figcaption class="item-grid-photo-caption"><%= categories[category].Products[index].Name%></figcaption>
+            </a>
+        </div>
+
+            <%}%>
+        </div>
+    </div>
+    <%}%>
+
+</script>

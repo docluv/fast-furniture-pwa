@@ -1,0 +1,25 @@
+<script id="search"
+		  class="spa-view"
+		  spa-transition="slide"
+		  spa-view-id=".spa-view-search"
+		  spa-layout="fast-furniture-layout"
+		  spa-route="search/:query"
+            type="spa-view">
+
+	<section class="spa-view-search">
+
+        <form action="/search" name="furnitureSearch">
+            <div class="searchBox">
+                <input id="searchTerm" class="search" spellcheck="true" autocapitalize="off"
+                       autofocus="" name="searchTerm" placeholder="search term" results="5" type="search" />
+                <span class="search-input-icon"></span>
+            </div>
+        </form>
+
+        <div class="y-scroller-wrapper">
+            <div class="search-result-list">
+            </div>
+        </div>
+
+    </section>
+</script>

@@ -1,0 +1,21 @@
+﻿<script id="productDetails" type="text/x-simpleTemplate-template">
+
+    <header class="product-detail-header">
+        <h1><%= Name%></h1>
+    </header>
+
+    <span class="product-detail-photo-wrapper">
+        <img alt="<%= Name%>" src="img/<%= Photos.Original%>" class="product-detail-photo">
+    </span>
+
+    <div class="product-detail-list">
+        <div class="product-detail-list-item product-detail-price">$<%= Price%></div>
+        <div class="product-detail-list-item order-btn"><button class="btn btn-default add-to-cart" data-product="<%= Slug%>">Order Now</button></div>
+    </div>
+
+    <div class="product-detail-description">
+        <%= Description%>
+    </div>
+
+
+</script>

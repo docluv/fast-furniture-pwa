@@ -59,3 +59,15 @@ typings/
 
 # next.js build output
 .next
+/www/images
+/www/api/shopping-cart.json
+/www/api/categories
+/www/api/products
+/www/api/about.json
+/www/api/categories.json
+/www/api/category.json
+/www/api/contact.json
+/www/api/home.json
+/www/api/privacy.json
+/www/api/product.json
+/api/db.json

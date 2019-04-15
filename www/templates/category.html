@@ -1,0 +1,38 @@
+<h1>{{Name}}</h1>
+<div class="gallery-list category-list">
+    {{#Products}}
+    <a href="{{base}}product/{{Slug}}/">
+        <figure class="productbox">
+            <div class="img-box">
+                <img srcset="{{base}}images/originals/{{Photos.Original}} 1000w, {{base}}images/display/{{Photos.Display}} 933w, {{base}}images/mobile/{{Photos.Mobile}} 300w, {{base}}images/thumb/{{Photos.Thumb}} 116w"
+                    sizes="(max-width: 769px) 100vw, (max-width: 1025px) 46vw, 30vw"
+                    src="{{base}}images/originals/{{Photos.Original}}" alt="{{Name}}" class="img-fluid">
+            </div>
+            <figcaption>
+                <h3>{{Name}}</h3>
+            </figcaption>
+            <i class="fa fa-plus" aria-hidden="true"></i>
+        </figure>
+    </a>
+    {{/Products}}
+    <p class="center-text lead">Share This Article With Your Friends!</p>
+    <button class="btn bg-white text-dark btn-share invisible" share-text="{{Description}}"
+        share-title="Fast Furniture - {{Name}}" share-url="https://fastfurniture.love2dev.com/category/{{Slug}}">
+        <i class="far fa-share-square fa-5x"></i>
+    </button>
+    <ul class="share-buttons invisible">
+        <li>
+            <a href="https://www.facebook.com/sharer/sharer.php?u=https%3A%2F%2Ffastfurniture.love2dev.com/category/{{Slug}}&amp;t=What Are Progressive Web Application Benefits?"
+                rel="noopener" title="Share on Facebook" class="btn btn-social icon-facebook" target="_blank"></a>
+        </li>
+        <li>
+            <a href="https://twitter.com/intent/tweet?url=https%3A%2F%2Ffastfurniture.love2dev.com/category/{{Slug}}&amp;text=What Are Progressive Web Application Benefits?"
+                rel="noopener" class="btn btn-social icon-twitter" target="_blank" title="Tweet"></a>
+        </li>
+        <li>
+            <a href="http://www.linkedin.com/shareArticle?mini=true&amp;url=https%3A%2F%2Ffastfurniture.love2dev.com/category/{{Slug}}&amp;title=What Are Progressive Web Application Benefits?&amp;summary="
+                rel="noopener" target="_blank" title="Share on LinkedIn" class="btn btn-social icon-linkedin"></a>
+        </li>
+    </ul>
+
+</div>
