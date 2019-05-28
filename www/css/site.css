@@ -1,24 +1,37 @@
-.body {
-    font-family: /* 1 */
-    -apple-system, BlinkMacSystemFont, /* 2 */
-    "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans", /* 3 */
-    "Helvetica Neue", sans-serif;
+.body,
+body {
+    font-family:
+        /* 1 */
+        -apple-system, BlinkMacSystemFont,
+        /* 2 */
+        "Segoe UI", "Roboto", "Oxygen", "Ubuntu", "Cantarell", "Fira Sans", "Droid Sans",
+        /* 3 */
+        "Helvetica Neue", sans-serif;
     font-size: 16pt;
     line-height: 1.5;
-    color: #393939;  
+    color: #393939;
     background-color: #f8f9fa;
+    width: 100%;
+    height: 100%;
+    min-width: 100vw;
+    min-height: 100vh;
+
 }
 
 .offline-grey-scale {
-	-webkit-filter: grayscale(1); /* Older webkit versions */
-	-webkit-filter: grayscale(100%);
-	-moz-filter : grayscale (100%); /* Gecko-Based Browsers, Mozilla Firefox */
-	-ms-filter : grayscale(100%);
-	-o-filter : grayscale(100%); /* Opera */
-	filter: grayscale(100%);
-	filter: gray; /* IE 6-9 */
-	/* This is for Firefox 3.5+, Firefox mobile */
-	filter : url ("data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\'><filter id=\'gs\'><feColorMatrixtype=\'matrix\'values=\'0.3333 0.3333 0.3333 0 0 0.3333 0.3333 0.3333 0 0 0.3333 0.3333 0.3333 0 0 0 0 0 1 0\'/></filter></svg>#gs");
+    -webkit-filter: grayscale(1);
+    /* Older webkit versions */
+    -webkit-filter: grayscale(100%);
+    -moz-filter: grayscale (100%);
+    /* Gecko-Based Browsers, Mozilla Firefox */
+    -ms-filter: grayscale(100%);
+    -o-filter: grayscale(100%);
+    /* Opera */
+    filter: grayscale(100%);
+    filter: gray;
+    /* IE 6-9 */
+    /* This is for Firefox 3.5+, Firefox mobile */
+    filter: url ("data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\'><filter id=\'gs\'><feColorMatrixtype=\'matrix\'values=\'0.3333 0.3333 0.3333 0 0 0.3333 0.3333 0.3333 0 0 0.3333 0.3333 0.3333 0 0 0 0 0 1 0\'/></filter></svg>#gs");
 }
 
 .primary-header {
@@ -134,6 +147,7 @@ figcaption h3 {
         width: 100%;
         vertical-align: middle;
     }
+
     .offset-md-2 {
         margin-left: 16.666667%;
     }
@@ -150,6 +164,7 @@ figcaption h3 {
         line-height: 60px;
         font-size: 60px;
     }
+
     .container {
         width: 90%;
     }
@@ -757,6 +772,7 @@ ul.share-buttons li {
         margin: 6px 6px 0 0;
         min-width: 110px;
     }
+
     .btn-social {
         font-size: 2em;
         width: 12%;
@@ -768,6 +784,7 @@ ul.share-buttons li {
     .jumbotron h1 {
         font-size: 68px;
     }
+
     .product-list>a {
         margin: 10px auto;
         max-width: 100%;
@@ -779,11 +796,13 @@ ul.share-buttons li {
     .jumbotron h1 {
         font-size: 72px;
     }
+
     .product-list>a {
         margin: 10px 1%;
         max-width: 48%;
         width: 48%;
     }
+
     .product-list>a .img-box {
         min-height: 324px;
     }
@@ -799,10 +818,12 @@ ul.share-buttons li {
     .jumbotron h1 {
         font-size: 88px;
     }
+
     .product-list>a {
         max-width: 23%;
         width: 23%;
     }
+
     .product-list>a .img-box {
         min-height: 271px;
     }

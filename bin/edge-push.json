@@ -1,0 +1,8 @@
+{
+    "endpoint": "https://db5p.notify.windows.com/w/?token=BQYAAAB0IBH4WBAGcIu7058WOkWhi5PfL4w5lSHA7Loq7J%2bwDZIUkpSOWLsQCaGjZyOZ4AQTahV%2bWldO03pPHqt8R6cx3Numi97F86q0nFUpHYmejNHPVsxTdy9Pfldc4PptAfol4LLKc7dmqs9V%2b0n9y7c1dnvsLSOT27sRnhcKVWj%2fMcNALUhM2r4jZ5cYzMLAz9po96skRUg%2fcFt3S7RDr5CWUfLZAezpvyyvXdUsspPOqyqEi5JbYKPXBk7Os4zqHbJctmpIoyzs%2bSSyRYaHfCxnatK%2fWKaRkxfa%2ftpiF7mtM7WjbD8%2bCq97VkB6FwKQNwhREtavg76V%2fZgCoXFGy9uU",
+    "expirationTime": 1554954486000,
+    "keys": {
+        "auth": "51icwE3x8MiIbvhAzWBpTw",
+        "p256dh": "BBghcAaNV3Gjvf_aA8LBw-G2woc4R3wrhyaMI_f6PLpcQz8oABI6rwRYj7P8gab6Mc0UWtsCeczqG3dW6gxzwVU"
+    }
+}

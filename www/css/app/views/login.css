@@ -1,20 +1,9 @@
-/* .login-background */
-
-.flex-center {
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-    align-content: center;
-}
-
-.login-background {
-    width: 100%;
-    height: 100%;
+.ff-login {
     position: relative;
 }
 
-.login-background::before {
-    background-image: url(/images/originals/Addison-Traditional-Style-Dining-Room-Furniture.jpg);
+.ff-login::before {
+    background-image: url(/img/pwa-benefits-hero-320x214.jpg);
     background-size: cover;
     content: "";
     display: block;
@@ -24,20 +13,14 @@
     width: 100%;
     height: 100%;
     z-index: -2;
-    filter: blur(3px);
+    filter: blur(1px);
 }
 
-/*----------------------------------------
-    Login Page
-------------------------------------------*/
-
-.login-wrapper {
-    height: 80vh;
-    width: 100vw;
-}
-
-.brand-logo img {
-    border-radius: 50%;
+.btn.ghost {
+    background: none;
+    border-color: #fff;
+    color: #fff;
+    padding: 12px 22px;
 }
 
 .login-form {
@@ -54,14 +37,10 @@
     width: 100%;
     height: 100%;
     background-color: #aaa;
-    /* opacity: .4; */
 }
 
-/* .login-form.mediterranean-cuisine {
-            border: 1px solid #333;
-        } */
 
-.login-form.mediterranean-cuisine::before {
+.login-form.ff-login::before {
     filter: blur(33px);
 }
 
@@ -91,6 +70,10 @@
     margin-bottom: 10px;
 }
 
+/*----------------------------------------
+    Login Page
+------------------------------------------*/
+
 .login-container {
     z-index: 999;
     padding: 10% 5%;
@@ -108,43 +91,14 @@
     font-size: 0.8rem;
 }
 
-.profile-image-login {
-    width: 100px;
-    height: 100px !important;
-}
-
 .login-text {
     margin-top: -6px;
     margin-left: -6px !important;
 }
 
-.auth-providers {
-    width: 100%;
-}
-
-.auth-providers .btn-floating.btn-large,
-.auth-providers .btn-floating.btn-large i {
-    font-size: 1.2rem;
-    line-height: 43px;
-    width: 42px;
-    height: 42px;
-}
 
 .btn-login {
     margin-right: 3%;
-}
-
-.dial-pad {
-    display: flex;
-    flex-direction: row;
-    flex-wrap: wrap;
-    width: 270px;
-    justify-content: center;
-}
-
-.user-face,
-.faceid-camera {
-    width: 100%;
 }
 
 .profile-img-card {
@@ -155,21 +109,6 @@
     border-radius: 50%;
 }
 
-.voiceid-container {
-    width: 100%;
-    text-align: center;
-}
-
-.voiceid-btn {
-    width: 200px;
-    height: 200px;
-    line-height: 200px;
-}
-
-.voiceid-btn.btn-floating i {
-    font-size: 5em;
-    line-height: 200px;
-}
 
 @media only screen and (min-width: 480px) {
     .login-form {
@@ -203,4 +142,42 @@
         width: 600px;
     }
 
+}
+
+
+
+@media (min-width: 321px) {
+    .ff-login::before {
+        background-image: url(/img/pwa-benefits-hero-460x307.jpg);
+    }
+}
+
+@media (min-width: 461px) {
+    .ff-login::before {
+        background-image: url(/img/pwa-benefits-hero-720x480.jpg);
+    }
+}
+
+@media (min-width: 721px) {
+    .ff-login::before {
+        background-image: url(/img/pwa-benefits-hero-980x653.jpg);
+    }
+}
+
+@media (min-width: 981px) {
+    .ff-login::before {
+        background-image: url(/img/pwa-benefits-hero-1240x827.jpg);
+    }
+}
+
+@media (min-width: 1241px) {
+    .ff-login::before {
+        background-image: url(/img/pwa-benefits-hero-1280x853.jpg);
+    }
+}
+
+@media (min-width: 1281px) {
+    .ff-login::before {
+        background-image: url(/img/pwa-benefits-hero-1920x1279.jpg);
+    }
 }

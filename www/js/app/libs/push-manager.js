@@ -5,13 +5,6 @@
     //push key
     var applicationServerPublicKey = "BJlCl5-g8VzsdZIOjTDecoQ75zpCq4vJxyYFW8fp-SgEQqSPAeTPd8a-QGbkQetBGbMG2vM0MwH1vTvDA6ZX_-g";
 
-    //'BH2mv3NZwRaO4-fnNAXe212SW8gep402wV4dStk2vewdGtUOrVMrGY0zh-2WNT4_aEVLc12r0bfuABanQRy8bDM';
-
-    //"AAAAUGqTf0E:APA91bEa57aNxYLzuVJRU3PZPgM4x2HvGopnaupNc4VEXHBCNgFzl3mT6iauodFRUjxCqOGlpZnR9qZCPfOofmwJF7dTof0daw1lpZD__ukt3pKfU0p5o6SoTZi67IIJg0NrEhNczvKj";
-
-    //"BMCk9_RBx0MLhtdxSMh51bqxT5IW_ICvfFsMHKL-4BoGnmP5JAhBCmy75wlp6POBGSK8hLYHO2_k6mrgmKWJ07A"
-
-
     var pushMgr = {
 
         swRegistration: undefined,

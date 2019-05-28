@@ -1,0 +1,38 @@
+[
+    {
+        "Name": "Living Room",
+        "Slug": "living-room"
+    },
+    {
+        "Name": "Dining",
+        "Slug": "dining"
+    },
+    {
+        "Name": "Bedroom",
+        "Slug": "bedroom"
+    },
+    {
+        "Name": "Mattress",
+        "Slug": "mattress"
+    },
+    {
+        "Name": "Office",
+        "Slug": "Office"
+    },
+    {
+        "Name": "Entertainment",
+        "Slug": "entertainment"
+    },
+    {
+        "Name": "Youth",
+        "Slug": "youth"
+    },
+    {
+        "Name": "Patio",
+        "Slug": "patio"
+    },
+    {
+        "Name": "Accent/Decor",
+        "Slug": "accent-decor"
+    }
+]
