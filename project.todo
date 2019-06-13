@@ -4,8 +4,8 @@ Project:
 
     Login:
         ☐ Use Credential Manager API
-        ☐ change login form logo to FF
-        ☐ change login form background image for acryllic look
+        ✔ change login form logo to FF @done (5/28/2019, 12:47:56 PM)
+        ✔ change login form background image for acryllic look @done (5/28/2019, 12:48:00 PM)
         ☐ Add WebAuthn Login/Windows Hello
 
     Payment:
@@ -15,7 +15,27 @@ Project:
         ☐ Verify Push Handler Renders Data Correctly
         ☐ Verify Registration
         ☐ Verify Settings Management
+        ☐ auto prompt user if added to homescreen - must visit new page after installation
 
+
+    Add to Homescreen:
+        ☐ integrate A2HS library
+        ☐ update banner prompt
+        ☐ dont ask until at least 2 pages have been viewed
+
+    Product Page Layout:
+        ☐ update to use related products cards at the bottom
+        ☐ display product pricing and order button to the right of the photo
+
+    Categories:
+        ☐ generate updated fake data to reference variety of product photos
+        ☐ make each product thumbnail card equal height
+
+    Shopping cart:
+        ☐ Update Layout
+
+    About:
+        ☐ update layout, use an image and better formatting
 
 Archive:
 

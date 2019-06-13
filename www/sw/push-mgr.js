@@ -11,9 +11,7 @@ class PushManager {
         var pm = this;
 
         self.addEventListener( "push", event => {
-
             pm.handlePush( event );
-
         } );
 
         pm.registerResponse();
@@ -23,16 +21,16 @@ class PushManager {
     handlePush( event ) {
 
         console.log( '[Service Worker] Push Received.' );
-        console.log( '[Service Worker] Data: ', event.data );
-        console.log( `[Service Worker] Push had this data: "${event.data.text()}"` );
+        // console.log( '[Service Worker] Data: ', event.data );
+        // console.log( `[Service Worker] Push had this data: "${event.data.text()}"` );
 
         try {
 
-            const data = event.data.json(),
-                msg = JSON.parse( data.message );
+            const data = event.data.text(),
+                msg = JSON.parse( data );
 
             event.waitUntil( self.registration
-                .showNotification( data.title, msg ) );
+                .showNotification( msg.message.title, msg.message ) );
 
         } catch ( e ) {
             console.log( 'invalid json - notification supressed' );
@@ -51,7 +49,6 @@ class PushManager {
         } );
 
     }
-
 
     handleResponse( event ) {
 
