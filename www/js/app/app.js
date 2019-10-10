@@ -4,8 +4,7 @@
 
     var deferredPrompt;
 
-    var showgdpr = localStorage.getItem( "gdpr" ),
-        showA2HS = localStorage.getItem( "a2hs" );
+    var showgdpr = localStorage.getItem( "gdpr" );
 
     function showGDPR() {
 
@@ -42,86 +41,21 @@
 
     }
 
-    if ( !showA2HS ) {
-
-        window.addEventListener( "beforeinstallprompt", function ( e ) {
-            // Prevent Chrome 67 and earlier from automatically showing the prompt
-            e.preventDefault();
-            // Stash the event so it can be triggered later.
-            deferredPrompt = e;
-
-            if ( showgdpr ) {
-
-                setTimeout( showAddToHomeScreen, 5000 );
-
-            }
-
-        } );
-
-    }
-
-
-    // window.addEventListener( 'beforeinstallprompt', function ( e ) {
-    //     // Prevent Chrome 67 and earlier from automatically showing the prompt
-    //     e.preventDefault();
-    //     // Stash the event so it can be triggered later.
-    //     deferredPrompt = e;
-
-    //     setTimeout( showAddToHomeScreen, 5000 );
-
-    // } );
-
-    function showAddToHomeScreen() {
-
-        var a2hsBtn = document.querySelector( ".ad2hs-prompt" );
-
-        if ( a2hsBtn ) {
-
-            a2hsBtn.style.display = "flex";
-
-            a2hsBtn.addEventListener( "click", addToHomeScreen );
-
+    addToHomescreen( {
+        appID: "com.love2dev.pubcon",
+        appName: "Pubcon.love2dev",
+        lifespan: 15,
+        autostart: true,
+        skipFirstVisit: false,
+        minSessions: 0,
+        displayPace: 0,
+        customCriteria: true,
+        customPrompt: {
+            title: "Install Fast Furniture?",
+            cancelMsg: "Cancel",
+            installMsg: "Install"
         }
-
-    }
-
-    function addToHomeScreen() {
-
-        var a2hsBtn = document.querySelector( ".ad2hs-prompt" );
-
-        if ( a2hsBtn ) {
-
-            // hide our user interface that shows our A2HS button
-            a2hsBtn.style.display = 'none';
-
-            if ( deferredPrompt ) {
-                // Show the prompt
-                deferredPrompt.prompt();
-
-                // Wait for the user to respond to the prompt
-                deferredPrompt.userChoice
-                    .then( function ( choiceResult ) {
-
-                        if ( choiceResult.outcome === 'accepted' ) {
-                            console.log( 'User accepted the A2HS prompt' );
-                        } else {
-                            console.log( 'User dismissed the A2HS prompt' );
-                        }
-
-                        deferredPrompt = null;
-
-                    } );
-
-            }
-
-        }
-
-    }
-
-    window.addEventListener( 'appinstalled', function ( evt ) {
-        console.log( 'a2hs', 'installed' );
     } );
-
 
     if ( 'serviceWorker' in navigator ) {
 
@@ -146,20 +80,6 @@
                         } );
                     }
                 } );
-
-                navigator.serviceWorker.getRegistrations()
-                    .then( function ( registrations ) {
-
-                        if ( registrations ) {
-
-                            registrations.forEach( function ( registration ) {
-
-                                console.log( "registration: ", registration.scope );
-
-                            }, this );
-
-                        }
-                    } );
 
                 reg.addEventListener( 'updatefound', function () {
                     // A wild service worker has appeared in reg.installing!
@@ -203,39 +123,6 @@
                     navigator.serviceWorker.controller.scriptURL );
 
             } );
-
-        //install prompt management
-        // window.addEventListener( 'beforeinstallprompt', function ( e ) {
-
-        //     console.log( 'beforeinstallprompt Event fired' );
-        //     // e.preventDefault();
-        //     // return false;
-
-        //     // e.userChoice will return a Promise.
-        //     e.userChoice.then( function ( choiceResult ) {
-
-        //         console.log( choiceResult.outcome );
-
-        //         if ( choiceResult.outcome === 'dismissed' ) {
-
-        //             console.log( 'User cancelled home screen install' );
-
-        //         } else {
-
-        //             console.log( 'User added to home screen' );
-
-        //         }
-
-        //     } );
-
-        // } );
-
-        function handleInstalled( ev ) {
-            const date = new Date( ev.timeStamp / 1000 );
-            console.log( `Yay! Our app got installed at ${date.toTimeString()}.` );
-        }
-
-        window.addEventListener( "appinstalled", handleInstalled );
     }
 
     var utils = {

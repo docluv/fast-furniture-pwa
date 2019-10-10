@@ -19,19 +19,8 @@ body {
 }
 
 .offline-grey-scale {
-    -webkit-filter: grayscale(1);
-    /* Older webkit versions */
-    -webkit-filter: grayscale(100%);
-    -moz-filter: grayscale (100%);
-    /* Gecko-Based Browsers, Mozilla Firefox */
-    -ms-filter: grayscale(100%);
-    -o-filter: grayscale(100%);
-    /* Opera */
     filter: grayscale(100%);
     filter: gray;
-    /* IE 6-9 */
-    /* This is for Firefox 3.5+, Firefox mobile */
-    filter: url ("data:image/svg+xml;utf8,<svg xmlns=\'http://www.w3.org/2000/svg\'><filter id=\'gs\'><feColorMatrixtype=\'matrix\'values=\'0.3333 0.3333 0.3333 0 0 0.3333 0.3333 0.3333 0 0 0.3333 0.3333 0.3333 0 0 0 0 0 1 0\'/></filter></svg>#gs");
 }
 
 .primary-header {
@@ -137,7 +126,6 @@ figcaption h3 {
     line-height: 1.42857143;
     position: relative;
     -webkit-appearance: none;
-    -webkit-box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.075);
     box-shadow: inset 0 1px 2px rgba(0, 0, 0, 0.075);
 }
 
@@ -193,9 +181,7 @@ figcaption h3 {
 }
 
 .product-list>a * {
-    -webkit-box-sizing: border-box;
     box-sizing: padding-box;
-    -webkit-transition: all 0.2s ease-out;
     transition: all 0.2s ease-out;
 }
 
@@ -247,7 +233,6 @@ figcaption h3 {
     position: absolute;
     top: 0;
     left: 50%;
-    -webkit-transform: translate(-50%, 0%);
     transform: translate(-50%, 0%);
     width: 56px;
     line-height: 56px;
@@ -276,7 +261,6 @@ figcaption h3 {
 
 .product-list>a:hover i,
 .product-list>a.hover i {
-    -webkit-transform: translate(-50%, 5px);
     transform: translate(-50%, 5px);
 }
 
@@ -286,8 +270,6 @@ figcaption h3 {
     background-color: #f8f9fa;
     padding: 10px;
     margin-bottom: 10px;
-    -webkit-box-shadow: 0 8px 6px -6px #999;
-    -moz-box-shadow: 0 8px 6px -6px #999;
     box-shadow: 0 8px 6px -6px #999;
     max-height: 325px;
 }
@@ -384,9 +366,6 @@ figcaption h3 {
     max-width: 110px;
     opacity: 0.6;
     transition: all .2s ease-in;
-    -o-transition: all .2s ease-in;
-    -moz-transition: all .2s ease-in;
-    -webkit-transition: all .2s ease-in;
 }
 
 .service1-item>img:hover {
@@ -536,8 +515,6 @@ figcaption h3 {
     text-transform: uppercase;
     margin: 40px auto 0px;
     text-shadow: 3px 3px 3px #000;
-    -webkit-text-shadow: 3px 3px 3px #000;
-    -moz-text-shadow: 3px 3px 3px #000;
 }
 
 .jumbotron h3 {
@@ -545,9 +522,6 @@ figcaption h3 {
     font-weight: lighter;
     margin: 0px auto 15px;
     text-shadow: 3px 3px 3px #000;
-    -webkit-text-shadow: 3px 3px 3px #000;
-    -moz-text-shadow: 3px 3px 3px #000;
-    /* background-color: #337ab7;     */
 }
 
 .navbar-nav {
@@ -643,7 +617,6 @@ figcaption h3 {
     border: 1.5px solid #8a8a8a;
     border-radius: 1px;
     margin-top: 2px;
-    -webkit-transition: .2s;
     transition: .2s;
 }
 
@@ -655,18 +628,12 @@ figcaption h3 {
     border-style: solid;
     border-width: 2px;
     border-color: transparent #4285F4 #4285F4 transparent;
-    -webkit-transform: rotate(40deg);
-    -ms-transform: rotate(40deg);
     transform: rotate(40deg);
-    -webkit-backface-visibility: hidden;
-    -webkit-transform-origin: 100% 100%;
-    -ms-transform-origin: 100% 100%;
     transform-origin: 100% 100%;
 }
 
 input[type=radio],
 input[type=checkbox] {
-    -webkit-box-sizing: border-box;
     box-sizing: border-box;
     padding: 0;
 }
@@ -687,10 +654,7 @@ input[type=checkbox] {
     height: 25px;
     line-height: 25px;
     font-size: 1rem;
-    -webkit-user-select: none;
-    -moz-user-select: none;
-    -khtml-user-select: none;
-    -ms-user-select: none;
+    user-select: none;
 }
 
 .form-container {
@@ -715,6 +679,8 @@ input[type=checkbox] {
 
 .btn-cancel {
     background-color: tomato;
+    color: #fff;
+    text-decoration: none;
 }
 
 .btn-cancel:hover {

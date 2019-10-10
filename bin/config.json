@@ -1,0 +1,10 @@
+{
+    "localhost": {
+        "base": "http://localhost:57661/",
+        "target": "dev.localhost"
+    },
+    "production": {
+        "base": "https://fastfurniture.love2dev.com/",
+        "target": "dev.production"
+    }
+}

@@ -1,0 +1,18 @@
+<h1>{{Name}}</h1>
+<div class="gallery-list category-list">
+    {{#Products}}
+    <a href="{{base}}product/{{Slug}}/">
+        <figure class="productbox">
+            <div class="img-box">
+                <img srcset="{{base}}images/originals/{{Photos.Original}} 1000w, {{base}}images/display/{{Photos.Display}} 933w, {{base}}images/mobile/{{Photos.Mobile}} 300w, {{base}}images/thumb/{{Photos.Thumb}} 116w"
+                    sizes="(max-width: 769px) 100vw, (max-width: 1025px) 46vw, 30vw" src="{{base}}images/originals/{{Photos.Original}}"
+                    alt="{{Name}}" class="img-responsive">
+            </div>
+            <figcaption>
+                <h3>{{Name}}</h3>
+            </figcaption>
+            <i class="fa fa-plus" aria-hidden="true"></i>
+        </figure>
+    </a>
+    {{/Products}}
+</div>

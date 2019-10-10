@@ -1,4 +1,5 @@
-importScripts( "/js/libs/idb.js", "sw/response-mgr.js", "sw/push-mgr.js",
+importScripts( "/js/libs/idb.js", "sw/response-mgr.js",
+  "sw/push-mgr.js",
   "sw/invalidation-mgr.js", "sw/date-mgr.js" );
 
 var version = "v4.05",
@@ -176,7 +177,7 @@ function handleResponse( event ) {
           } )
           .then( response => {
 
-            invalidationManager.cacheCleanUp( cacheName );
+            invalidationManager.cacheCleanUp();
 
             return response;
 
