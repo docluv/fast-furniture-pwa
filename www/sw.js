@@ -2,7 +2,7 @@ importScripts( "/js/libs/idb.js", "sw/response-mgr.js",
   "sw/push-mgr.js",
   "sw/invalidation-mgr.js", "sw/date-mgr.js" );
 
-var version = "v4.05",
+const version = "v4.06",
   precache_urls = [
     "css/bootstrap.min.css",
     "css/site.css",
@@ -21,14 +21,13 @@ var version = "v4.05",
   ],
   precache_no_dependency_urls = [
     "categories/",
-    "category/",
     "cart/",
     "js/app/categories.js",
     "js/app/cart.js",
     "js/app/category.js",
     "js/app/product.js",
     "js/app/settings.js",
-    //    "images/offline-product.jpg",
+    "images/offline-product.jpg",
     "images/originals/Addison-Traditional-Style-Dining-Room-Furniture.jpg"
   ],
   preCacheName = "precache-" + version,
@@ -212,6 +211,8 @@ function handleResponse( event ) {
 
     }
 
+  } else {
+    return fetch( event.request );
   }
 
 }

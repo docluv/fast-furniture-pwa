@@ -1,23 +1,23 @@
-const utils = require("./utils"),
-    fs = require("fs"),
-    path = require("path"),
-    glob = require("glob"),
-    template = require("mustache"),
+const utils = require( "./utils" ),
+    fs = require( "fs" ),
+    path = require( "path" ),
+    glob = require( "glob" ),
+    template = require( "mustache" ),
     utf8 = "utf-8",
-    categoryTemplate = fs.readFileSync("../site/src/html/templates/category.template.html", utf8);
+    categoryTemplate = fs.readFileSync( "../www/html/templates/category.template.html", utf8 );
 
-function tranformReviews(reviews) {
+function tranformReviews( reviews ) {
 
     let ret = [];
 
-    for (let index = 0; index < reviews.length; index++) {
+    for ( let index = 0; index < reviews.length; index++ ) {
 
-        const review = reviews[index];
+        const review = reviews[ index ];
 
-        ret.push({
-            "rating": Math.floor(Math.random() * Math.floor(5)),
+        ret.push( {
+            "rating": Math.floor( Math.random() * Math.floor( 5 ) ),
             "review": review.trim()
-        })
+        } );
 
     }
 
@@ -25,17 +25,21 @@ function tranformReviews(reviews) {
 
 }
 
-function transformProducts(products) {
+function transformProducts( products ) {
+
+    if ( !products || !products.length ) {
+        return [];
+    }
 
     let ret = [];
 
-    for (let index = 0; index < products.length; index++) {
+    for ( let index = 0; index < products.length; index++ ) {
 
-        const product = products[index];
+        const product = products[ index ];
 
-        product.Reviews = tranformReviews(product.Reviews);
+        product.Reviews = tranformReviews( product.Reviews );
 
-        ret.push(product);
+        ret.push( product );
     }
 
     return ret;
@@ -44,34 +48,34 @@ function transformProducts(products) {
 
 module.exports = {
 
-    buildCategoryPages: function (defaultPage) {
+    buildCategoryPages: function ( defaultPage ) {
 
-        return new Promise(function (resolve, reject) {
+        return new Promise( function ( resolve, reject ) {
 
-            glob("../site/src/api/categories/*.json", function (er, files) {
+            glob( "../www/api/categories/*.json", function ( er, files ) {
 
-                for (let i = 0; i < files.length; i++) {
+                for ( let i = 0; i < files.length; i++ ) {
 
-                    let json = utils.readJSON(files[i], utf8);
+                    let json = utils.readJSON( files[ i ], utf8 );
 
-                    json = Object.assign({}, defaultPage, json);
+                    json = Object.assign( {}, defaultPage, json );
 
-                    json.slug = "category/" + utils.makeSlug(json.Name);
-                    
-                    json.body = template.render(categoryTemplate, json).trim()
-                        .replace(/\r\n/g, "").replace(/  /g, " ");
+                    json.slug = "category/" + utils.makeSlug( json.Name );
 
-                    json.Products = transformProducts(json.Products);
+                    json.body = template.render( categoryTemplate, json ).trim()
+                        .replace( /\r\n/g, "" ).replace( /  /g, " " );
 
-                    utils.createFile("../site/src/pages/" + json.slug + ".json", JSON.stringify(json), true);
+                    json.Products = transformProducts( json.Products || json.Related );
+
+                    utils.createFile( "../www/pages/" + json.slug + ".json", JSON.stringify( json ), true );
 
                 }
 
                 resolve();
 
-            });
+            } );
 
-        });
+        } );
 
     }
 

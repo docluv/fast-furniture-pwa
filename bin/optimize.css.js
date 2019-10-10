@@ -3,7 +3,7 @@ const utils = require("./utils"),
     cheerio = require("cheerio"),
     uncss = require('uncss'),
     CleanCSS = require('clean-css'),
-    cssPath = "../site/www/localhost";
+    cssPath = "../www/www/localhost";
 
 
 

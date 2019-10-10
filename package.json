@@ -13,6 +13,7 @@
         "json-server": "*",
         "mustache": "*",
         "faker": "*",
+        "ncp": "*",
         "glob": "*",
         "lodash": "*",
         "strip-bom": "*",

@@ -1,38 +1,37 @@
-
-const utils = require("./utils"),
-fs = require("fs"),
-path = require("path"),
-glob = require("glob"),
-template = require("mustache"),
-utf8 = "utf-8",
-productTemplate = fs.readFileSync("../site/src/html/templates/product.template.html", utf8);
+const utils = require( "./utils" ),
+    fs = require( "fs" ),
+    path = require( "path" ),
+    glob = require( "glob" ),
+    template = require( "mustache" ),
+    utf8 = "utf-8",
+    productTemplate = fs.readFileSync( "../www/html/templates/product.template.html", utf8 );
 
 module.exports = {
 
-    buildProductPages: function (defaultPage) {
+    buildProductPages: function ( defaultPage ) {
 
-        return new Promise(function (resolve, reject) {
+        return new Promise( function ( resolve, reject ) {
 
-            glob("../site/src/api/products/*.json", function (er, files) {
+            glob( "../www/api/products/*.json", function ( er, files ) {
 
-                for (let i = 0; i < files.length; i++) {
+                for ( let i = 0; i < files.length; i++ ) {
 
-                    let json = utils.readJSON(files[i], utf8);
+                    let json = utils.readJSON( files[ i ], utf8 );
 
-                    json = Object.assign({}, defaultPage, json);
+                    json = Object.assign( {}, defaultPage, json );
 
-                    json.slug = "product/" + utils.makeSlug(json.Name);
-                    json.body = template.render(productTemplate, json);
+                    json.slug = "product/" + utils.makeSlug( json.Name );
+                    json.body = template.render( productTemplate, json );
 
-                    utils.createFile("../site/src/pages/" + json.slug + ".json", JSON.stringify(json), true);
+                    utils.createFile( "../www/pages/" + json.slug + ".json", JSON.stringify( json ), true );
 
                 }
 
                 resolve();
 
-            });
+            } );
 
-        });
+        } );
 
     }
 

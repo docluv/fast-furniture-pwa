@@ -71,3 +71,7 @@ typings/
 /www/api/privacy.json
 /www/api/product.json
 /api/db.json
+/www/product
+/www/categories
+/www/pages
+/dist

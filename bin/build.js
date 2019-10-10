@@ -8,14 +8,14 @@ const utils = require( "./utils" ),
     template = require( "mustache" ),
     utf8 = "utf-8",
     defaultPage = utils.readJSON( "default.page.json", utf8 ),
-    appShell = fs.readFileSync( "../www/src/html/app/shell.html", utf8 );
+    appShell = fs.readFileSync( "../www/html/app/shell.html", utf8 );
 
 
 function renderPages() {
 
     let target = "../dist/";
 
-    glob( "../site/src/pages/**/*.json", function ( er, files ) {
+    glob( "../www/pages/**/*.json", function ( er, files ) {
 
         for ( let i = 0; i < files.length; i++ ) {
 
