@@ -125,6 +125,20 @@
             } );
     }
 
+    if ( navigator.onLine ) {
+        document.body.classList.remove( "offline-grey-scale" );
+    } else {
+        document.body.classList.add( "offline-grey-scale" );
+    }
+
+    window.addEventListener( "online", function ( e ) {
+        document.body.classList.remove( "offline-grey-scale" );
+    } );
+
+    window.addEventListener( "offline", function ( e ) {
+        document.body.classList.add( "offline-grey-scale" );
+    } );
+
     var utils = {
 
         getParameterByName: function ( name, url ) {

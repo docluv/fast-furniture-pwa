@@ -13,7 +13,7 @@ const utils = require( "./utils" ),
 
 function renderPages() {
 
-    let target = "../dist/";
+    let target = "../www/";
 
     glob( "../www/pages/**/*.json", function ( er, files ) {
 

@@ -56,17 +56,19 @@ module.exports = {
 
                 for ( let i = 0; i < files.length; i++ ) {
 
+
                     let json = utils.readJSON( files[ i ], utf8 );
 
                     json = Object.assign( {}, defaultPage, json );
 
-                    json.slug = "category/" + utils.makeSlug( json.Name );
+                    json.slug = "category/" + utils.makeSlug( path.basename( files[ i ], ".json" ) );
 
                     json.body = template.render( categoryTemplate, json ).trim()
                         .replace( /\r\n/g, "" ).replace( /  /g, " " );
 
                     json.Products = transformProducts( json.Products || json.Related );
 
+                    console.log( json.slug );
                     utils.createFile( "../www/pages/" + json.slug + ".json", JSON.stringify( json ), true );
 
                 }

@@ -1,4 +1,4 @@
-importScripts( "/js/libs/idb.js", "sw/response-mgr.js",
+importScripts( "/js/libs/idb.js", "/js/libs/localforage.js", "sw/response-mgr.js",
   "sw/push-mgr.js",
   "sw/invalidation-mgr.js", "sw/date-mgr.js" );
 
@@ -59,7 +59,11 @@ const version = "v4.06",
       cacheName: categoryCacheName
     },
     "cacheName": categoryCacheName
-  } ];
+  } ],
+  STALE_KEY = "-expires",
+  CATEGORIES_KEY = "categories-key",
+  PRODUCTS_KEY = "products-key",
+  MAX_LIST_CACHE = 60;
 
 /*
 
@@ -102,6 +106,7 @@ self.addEventListener( "activate", event => {
 
   event.waitUntil(
 
+    //wholesale purge of previous version caches
     caches.keys().then( cacheNames => {
       cacheNames.forEach( value => {
 
@@ -116,6 +121,21 @@ self.addEventListener( "activate", event => {
       return;
 
     } )
+    .then( () => {
+
+      return getTemplates();
+
+    } )
+    .then( () => {
+
+      return updateCachedData();
+
+    } )
+    .then( () => {
+
+      return renderSite();
+    } )
+
 
   );
 
@@ -354,6 +374,186 @@ function renderCategory( event ) {
           return response;
 
         } );
+
+    } );
+
+}
+
+function renderSite() {
+
+  let categories = [],
+    products = [];
+
+  return localforage.getItem( CATEGORIES_KEY )
+    .then( results => {
+
+      categories = results;
+
+      return localforage.getItem( PRODUCTS_KEY );
+    } )
+    .then( res => {
+
+      products = res;
+
+      let pages = [];
+
+      categories.forEach( category => {
+
+        pages.push( renderPage( "category/" +
+          category.Slug + "/", "category", category ) );
+
+      } );
+
+      products.forEach( product => {
+
+        pages.push( renderPage( "product/" +
+          product.Slug + "/", "product", product ) );
+
+      } );
+
+      return Promise.all( pages );
+
+    } )
+    .then( results => {
+
+      console.log( "site updated" );
+
+    } )
+    .catch( err => {
+
+      console.error( err );
+
+    } );
+
+}
+
+let templates = {};
+
+function getTemplates() {
+
+  return getHTMLAsset( "html/templates/category.template.html" )
+    .then( html => {
+      templates.category = html;
+    } )
+    .then( () => {
+
+      return getHTMLAsset( "html/app/shell.html" )
+        .then( html => {
+          templates.shell = html;
+        } );
+
+    } )
+    .then( () => {
+
+      return getHTMLAsset( "html/templates/product.template.html" )
+        .then( html => {
+          templates.product = html;
+        } );
+
+    } );
+
+}
+
+function renderPage( slug, templateName, data ) {
+
+  let pageTemplate = templates[ templateName ];
+
+  let template = templates.shell.replace( "<%template%>", pageTemplate );
+
+  pageHTML = Mustache.render( template, data );
+
+  let response = new Response( pageHTML, {
+    headers: {
+      "content-type": "text/html",
+      "date": new Date().toLocaleString()
+    }
+  } );
+
+  return caches.open( "fast-furniture-pages" )
+    .then( cache => {
+      cache.put( slug, response );
+    } );
+
+}
+
+function updateCachedData() {
+
+  return fetch( "api/categories.json" )
+    .then( response => {
+
+      if ( response && response.ok ) {
+
+        return response.json();
+
+      } else {
+        throw {
+          status: response.status,
+          message: "failed to fetch session data"
+        };
+      }
+
+    } )
+    .then( categories => {
+
+      return localforage.setItem( CATEGORIES_KEY, categories );
+
+    } )
+    .then( () => {
+
+      var dt = new Date();
+
+      dt.setMinutes( dt.getMinutes() + MAX_LIST_CACHE );
+
+      return localforage
+        .setItem( CATEGORIES_KEY + STALE_KEY, dt );
+
+    } )
+    .then( () => {
+
+      return fetch( "api/products.json" );
+    } )
+    .then( response => {
+
+      if ( response && response.ok ) {
+
+        return response.json();
+
+      } else {
+        throw {
+          status: response.status,
+          message: "failed to fetch category data"
+        };
+      }
+
+    } )
+    .then( products => {
+
+      return localforage.setItem( PRODUCTS_KEY, products );
+
+    } )
+    .then( () => {
+
+      var dt = new Date();
+
+      dt.setMinutes( dt.getMinutes() + MAX_LIST_CACHE );
+
+      return localforage
+        .setItem( PRODUCTS_KEY + STALE_KEY, dt );
+
+    } );
+
+}
+
+function getHTMLAsset( slug ) {
+
+  return caches.match( slug )
+    .then( response => {
+
+      if ( response ) {
+
+        return response.text();
+
+      }
 
     } );
 

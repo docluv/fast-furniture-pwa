@@ -1,0 +1,46 @@
+﻿[
+    {
+        "Name": "Home",
+        "Slug": "home",
+        "icon": "home-icon",
+        "class": "home-nav",
+        "description": "blah blah blah"
+    },
+    {
+        "Name": "Categories",
+        "Slug": "categories",
+        "icon": "categories-icon",
+        "class": "home-nav",
+        "description": "blah blah blah",
+        "children": [ ]
+    },
+    {
+        "Name": "Login",
+        "Slug": "login",
+        "icon": "login-icon",
+        "class": "home-nav",
+        "description": "blah blah blah"
+    },
+    {
+        "Name": "Privacy",
+        "Slug": "privacy",
+        "icon": "home-icon",
+        "class": "home-nav",
+        "description": "blah blah blah"
+    },
+    {
+        "Name": "About",
+        "Slug": "about",
+        "icon": "home-icon",
+        "class": "home-nav",
+        "description": "blah blah blah"
+    },
+        {
+        "Name": "Contact",
+        "Slug": "contact",
+        "icon": "home-icon",
+        "class": "home-nav",
+        "description": "blah blah blah"
+    }
+
+]

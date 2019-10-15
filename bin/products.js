@@ -20,7 +20,7 @@ module.exports = {
 
                     json = Object.assign( {}, defaultPage, json );
 
-                    json.slug = "product/" + utils.makeSlug( json.Name );
+                    json.slug = "product/" + utils.makeSlug( path.basename( files[ i ], ".json" ) );
                     json.body = template.render( productTemplate, json );
 
                     utils.createFile( "../www/pages/" + json.slug + ".json", JSON.stringify( json ), true );

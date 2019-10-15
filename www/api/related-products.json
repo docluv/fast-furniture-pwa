@@ -1,0 +1,53 @@
+﻿[
+    {
+        "Id": 3,
+        "Name": "CT47002",
+        "Slug": "CT47002",
+        "Description": "Nulla maecenas ipsum. Lectus nonummy, sapien sed integer. Vel curabitur, eu wisi.\r\nId nec. Torquent pellentesque.\r\nUrna at, nam etiam eget, nec interdum. Ullamcorper urna.\r\n",
+        
+    "Photos": {
+        "Original": "0247R1-mcneilly-red.jpg",
+        "Display": "0247R1-mcneilly-red.jpg",
+        "Mobile": "0247R1-mcneilly-red.jpg",
+        "Thumb": "0247R1-mcneilly-red.jpg"
+
+    },
+        "Price": 749.0,
+        "Categories": [ "Beds", "Office", "Beds" ]
+
+    },
+    {
+        "Id": 5,
+        "Name": "791220-ad-cherry45",
+        "Slug": "791220-ad-cherry45",
+        "Description": "Nulla maecenas ipsum. Lectus nonummy, sapien sed integer. Vel curabitur, eu wisi.\r\nId nec. Torquent pellentesque.\r\nUrna at, nam etiam eget, nec interdum. Ullamcorper urna.\r\n",
+        
+    "Photos": {
+        "Original": "0247R1-mcneilly-red.jpg",
+        "Display": "0247R1-mcneilly-red.jpg",
+        "Mobile": "0247R1-mcneilly-red.jpg",
+        "Thumb": "0247R1-mcneilly-red.jpg"
+
+    },
+        "Price": 749.0,
+        "Categories": [ "Beds", "Office", "Beds" ]
+
+    },
+    {
+        "Id": 14,
+        "Name": "legacysalemcrkroundpedextdining",
+        "Slug": "legacysalemcrkroundpedextdining",
+        "Description": "Nulla maecenas ipsum. Lectus nonummy, sapien sed integer. Vel curabitur, eu wisi.\r\nId nec. Torquent pellentesque.\r\nUrna at, nam etiam eget, nec interdum. Ullamcorper urna.\r\n",
+        
+    "Photos": {
+        "Original": "0247R1-mcneilly-red.jpg",
+        "Display": "0247R1-mcneilly-red.jpg",
+        "Mobile": "0247R1-mcneilly-red.jpg",
+        "Thumb": "0247R1-mcneilly-red.jpg"
+
+    },
+        "Price": 749.0,
+        "Categories": [ "Beds", "Office", "Beds" ]
+
+    }
+]
