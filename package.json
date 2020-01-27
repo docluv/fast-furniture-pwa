@@ -4,7 +4,7 @@
     "description": "foo bar",
     "main": "index.js",
     "scripts": {
-        "start": "http-server www/ -p 57661 -c-1 -i -s"
+        "start": "http-server www/ -p 57661 -c -i"
     },
     "author": "Chris Love",
     "private": true,
