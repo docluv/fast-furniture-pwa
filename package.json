@@ -1,7 +1,7 @@
 {
     "name": "fast-furniture-example-pwa-code",
     "version": "0.0.4",
-    "description": "foo bar",
+    "description": "Fast Furniture PWA demonstration site",
     "main": "index.js",
     "scripts": {
         "start": "http-server www/ -p 57661 -c -i"
@@ -9,7 +9,6 @@
     "author": "Chris Love",
     "private": true,
     "devDependencies": {
-        "http-server": "*",
         "json-server": "*",
         "mustache": "*",
         "faker": "*",

@@ -41,21 +41,21 @@
 
     }
 
-    addToHomescreen( {
-        appID: "com.love2dev.pubcon",
-        appName: "Pubcon.love2dev",
-        lifespan: 15,
-        autostart: true,
-        skipFirstVisit: false,
-        minSessions: 0,
-        displayPace: 0,
-        customCriteria: true,
-        customPrompt: {
-            title: "Install Fast Furniture?",
-            cancelMsg: "Cancel",
-            installMsg: "Install"
-        }
-    } );
+    // addToHomescreen( {
+    //     appID: "com.love2dev.pubcon",
+    //     appName: "Pubcon.love2dev",
+    //     lifespan: 15,
+    //     autostart: true,
+    //     skipFirstVisit: false,
+    //     minSessions: 0,
+    //     displayPace: 0,
+    //     customCriteria: true,
+    //     customPrompt: {
+    //         title: "Install Fast Furniture?",
+    //         cancelMsg: "Cancel",
+    //         installMsg: "Install"
+    //     }
+    // } );
 
     if ( 'serviceWorker' in navigator ) {
 

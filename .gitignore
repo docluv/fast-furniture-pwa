@@ -76,3 +76,4 @@ typings/
 /www/pages
 /dist
 /www/category
+/package-lock.json

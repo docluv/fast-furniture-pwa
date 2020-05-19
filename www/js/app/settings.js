@@ -1,6 +1,6 @@
 ( function () {
 
-    var cbNotifications = undefined;
+    var cbNotifications;
 
     function initializeView() {
 
@@ -13,157 +13,157 @@
 
     }
 
-    function initUSB(){
+    function initUSB() {
 
 
         var self = this;
 
         for ( var index = 0; index < deviceButtons.length; index++ ) {
-          self.bindDeviceEditButton( deviceButtons[ index ] );
+            self.bindDeviceEditButton( deviceButtons[ index ] );
         }
 
         self.on( self.qsa( ".header-status-bar-item" ), "click", function ( evt ) {
 
-          self.connectToDevice( evt.target );
+            self.connectToDevice( evt.target );
 
         } );
 
         var btnConnect = self.qs( ".btn-connect" ),
-          btnPrint = self.qs( ".btn-print" ),
-          btnPrintTicket = self.qs( ".btn-print-ticket" ),
-          btnDeviceList = self.qs( ".btn-list-devices" );
+            btnPrint = self.qs( ".btn-print" ),
+            btnPrintTicket = self.qs( ".btn-print-ticket" ),
+            btnDeviceList = self.qs( ".btn-list-devices" );
 
         self.on( btnConnect, "click", function ( evt ) {
 
-          evt.preventDefault();
+            evt.preventDefault();
 
-          self.openDevice();
+            self.openDevice();
 
         } );
 
         self.on( btnDeviceList, "click", function ( evt ) {
 
-          evt.preventDefault();
+            evt.preventDefault();
 
-          usb.getDevices()
-            .then( function ( devices ) {
+            usb.getDevices()
+                .then( function ( devices ) {
 
-              devices.forEach( function ( device ) {
+                    devices.forEach( function ( device ) {
 
-                logDeviceInfo( device );
+                        logDeviceInfo( device );
 
-              } );
+                    } );
 
-              self.listDevices();
+                    self.listDevices();
 
-            } );
+                } );
 
         } );
 
         self.on( btnPrint, "click", function ( evt ) {
 
-          evt.preventDefault();
+            evt.preventDefault();
 
-          var deviceType = "receiptPrinters";
+            var deviceType = "receiptPrinters";
 
-          //get printer meta info
-          usb.meta.getReceiptPrinter()
-            .then( function ( receiptPrinter ) {
+            //get printer meta info
+            usb.meta.getReceiptPrinter()
+                .then( function ( receiptPrinter ) {
 
-              if ( receiptPrinter ) {
+                    if ( receiptPrinter ) {
 
-                return usb.getUSBDevice( receiptPrinter )
-                  .then( function ( device ) {
+                        return usb.getUSBDevice( receiptPrinter )
+                            .then( function ( device ) {
 
-                    if ( device ) {
+                                if ( device ) {
 
-                      printSomething( device );
+                                    printSomething( device );
 
-                    } else {
+                                } else {
 
-                      console.log( "no available receipt printer" );
+                                    console.log( "no available receipt printer" );
+
+                                }
+
+                            } );
 
                     }
 
-                  } );
-
-              }
-
-            } );
+                } );
 
         } );
 
         self.on( btnPrintTicket, "click", function ( evt ) {
 
-          evt.preventDefault();
+            evt.preventDefault();
 
-          self.printTicket();
+            self.printTicket();
 
         } );
 
         usb.addConnectHandler( function ( device ) {
 
-          console.log( "connected to: " );
-          console.log( device );
+            console.log( "connected to: " );
+            console.log( device );
 
-          //change connected status to green
+            //change connected status to green
 
-          usb.meta.getDeviceConfig( device.serialNumber )
-            .then( function ( deviceInfo ) {
+            usb.meta.getDeviceConfig( device.serialNumber )
+                .then( function ( deviceInfo ) {
 
-              if ( deviceInfo ) {
+                    if ( deviceInfo ) {
 
-                self.updateConnectedStatus( deviceInfo, true );
+                        self.updateConnectedStatus( deviceInfo, true );
 
-                if ( !deviceInfo.usb ) {
+                        if ( !deviceInfo.usb ) {
 
-                  deviceInfo.usb = true;
+                            deviceInfo.usb = true;
 
-                  usb.meta.addConfiguredDevice( deviceInfo )
-                    .then( function () {
+                            usb.meta.addConfiguredDevice( deviceInfo )
+                                .then( function () {
 
-                      self.listDevices();
+                                    self.listDevices();
 
-                    } );
+                                } );
 
-                }
+                        }
 
-              } else {
+                    } else {
 
-                //display device info edit
-                //new device
-                return self.renderDeviceInfo( device )
-                  .then( function () {
+                        //display device info edit
+                        //new device
+                        return self.renderDeviceInfo( device )
+                            .then( function () {
 
-                    device.usb = true;
+                                device.usb = true;
 
-                    logDeviceInfo( device );
+                                logDeviceInfo( device );
 
-                  } );
+                            } );
 
-              }
+                    }
 
-            } );
+                } );
 
         } );
 
         usb.addDisconnectHandler( function ( device ) {
 
-          console.log( "disconnected from: " );
-          console.log( device );
+            console.log( "disconnected from: " );
+            console.log( device );
 
-          var hiddenList = self.qs( ".usb-configuration.hidden" );
+            var hiddenList = self.qs( ".usb-configuration.hidden" );
 
-          if ( hiddenList ) {
+            if ( hiddenList ) {
 
-            self.listDevices();
+                self.listDevices();
 
-          } else {
+            } else {
 
-            //change connected status to red
-            self.updateConnectedStatus( device, false );
+                //change connected status to red
+                self.updateConnectedStatus( device, false );
 
-          }
+            }
 
         } );
 

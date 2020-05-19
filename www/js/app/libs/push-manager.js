@@ -133,7 +133,7 @@
 
             var self = this;
 
-            self.getIsSubscribed()
+            return self.getIsSubscribed()
                 .then( function ( subscription ) {
 
                     self.askPermission()
