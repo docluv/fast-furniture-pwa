@@ -15,16 +15,20 @@ function renderPages() {
 
     let target = "../www/";
 
-    glob( "../www/pages/**/*.json", function ( er, files ) {
+    glob( "./config/pages/**/*.json", function ( er, files ) {
 
         for ( let i = 0; i < files.length; i++ ) {
 
             let json = utils.readJSON( files[ i ] );
 
-            let html = template.render( appShell, json );
+            if (json && json !== ""){
 
-            //need to create the real path here
-            utils.createFile( target + json.slug + "/index.html", html, true );
+                let html = template.render( appShell, json );
+
+                //need to create the real path here
+                utils.createFile( target + json.slug + "/index.html", html, true );
+
+            }
 
         }
 

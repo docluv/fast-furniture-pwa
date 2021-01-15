@@ -37,6 +37,9 @@ function transformProducts( products ) {
 
         const product = products[ index ];
 
+        product.slug = utils.makeSlug(product.Name);
+        product.photo = product.slug + ".jpg";
+
         product.Reviews = tranformReviews( product.Reviews );
 
         ret.push( product );
@@ -52,30 +55,25 @@ module.exports = {
 
         return new Promise( function ( resolve, reject ) {
 
-            glob( "../www/api/categories/*.json", function ( er, files ) {
+            let categories = utils.readJSON("../www/api/home-categories.json");
 
-                for ( let i = 0; i < files.length; i++ ) {
+            for (let i = 0; i < categories.length; i++) {
 
+                let category = categories[i];
 
-                    let json = utils.readJSON( files[ i ], utf8 );
+                category = Object.assign({}, defaultPage, category);
 
-                    json = Object.assign( {}, defaultPage, json );
+                category.slug = "category/" + utils.makeSlug(category.Name);
 
-                    json.slug = "category/" + utils.makeSlug( path.basename( files[ i ], ".json" ) );
+                category.Products = transformProducts(category.Products || category.Related);
 
-                    json.body = template.render( categoryTemplate, json ).trim()
-                        .replace( /\r\n/g, "" ).replace( /  /g, " " );
+                category.body = template.render(categoryTemplate, category);
 
-                    json.Products = transformProducts( json.Products || json.Related );
+                utils.createFile("./config/pages/" + category.slug + ".json", JSON.stringify(category), true);
 
-                    console.log( json.slug );
-                    utils.createFile( "../www/pages/" + json.slug + ".json", JSON.stringify( json ), true );
+            }
 
-                }
-
-                resolve();
-
-            } );
+            resolve();
 
         } );
 

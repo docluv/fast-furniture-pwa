@@ -163,7 +163,11 @@ figcaption h3 {
 
 .productbox {
     width: 100%;
-}
+    display: flex;
+    flex-direction: column;
+    align-items: start;
+    justify-content: start;
+    }
 
 .product-list>a {
     font-family: 'Oswald', Arial, sans-serif;
@@ -191,7 +195,6 @@ figcaption h3 {
     vertical-align: top;
     position: relative;
     background-color: #F7931E;
-    padding-top: 40px;
 }
 
 .product-list>a figcaption {
@@ -334,6 +337,13 @@ figcaption h3 {
     margin-top: 50px;
 }
 
+.product-list>a .img-box {
+    display: flex;
+    align-items: flex-start;
+    justify-content: start;
+    overflow: hidden;
+}
+
 
 /*********************************************
 				ITEM 
@@ -415,7 +425,7 @@ figcaption h3 {
 }
 
 .navbar .navbar-nav {
-    width: 100%;
+
     padding: 0 2rem;
 }
 
@@ -770,7 +780,7 @@ ul.share-buttons li {
     }
 
     .product-list>a .img-box {
-        min-height: 324px;
+        max-height: 300px;
     }
 }
 
@@ -791,7 +801,7 @@ ul.share-buttons li {
     }
 
     .product-list>a .img-box {
-        min-height: 271px;
+        max-height: 320px;
     }
 }
 

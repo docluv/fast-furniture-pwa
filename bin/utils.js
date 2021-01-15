@@ -109,11 +109,28 @@ module.exports = {
 
     },
 
+    readFile: function (src) {
+
+        if (fs.existsSync(src)) {
+
+            return stripBom(fs.readFileSync(src, utf8));
+
+        } else {
+            return undefined;
+        }
+
+    },
+
+
     readJSON: function (src) {
 
-        let body = fs.readFileSync(src, utf8);
+        let content = this.readFile(src);
 
-        return JSON.parse(body);
+        if (content) {
+
+            return this.parse(content);
+
+        }
 
     },
 

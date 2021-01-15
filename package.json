@@ -9,13 +9,13 @@
     "author": "Chris Love",
     "private": true,
     "devDependencies": {
-        "json-server": "*",
-        "mustache": "*",
         "faker": "*",
-        "ncp": "*",
         "glob": "*",
+        "json-server": "*",
         "lodash": "*",
-        "strip-bom": "*",
-        "mkdirp": "*"
+        "mkdirp": "*",
+        "mustache": "*",
+        "ncp": "*",
+        "strip-bom": "*"
     }
 }

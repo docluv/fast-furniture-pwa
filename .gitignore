@@ -77,3 +77,4 @@ typings/
 /dist
 /www/category
 /package-lock.json
+/bin/config/pages
