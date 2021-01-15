@@ -2,8 +2,8 @@ importScripts( "/js/libs/idb.js", "/js/libs/localforage.js", "sw/response-mgr.js
   "sw/push-mgr.js",
   "sw/invalidation-mgr.js", "sw/date-mgr.js" );
 
-const version = "v4.06",
-  precache_urls = [
+const version = "v5.00",
+  cacheList = [
     "css/bootstrap.min.css",
     "css/site.css",
     "js/libs/jquery.small.js",
@@ -17,9 +17,7 @@ const version = "v4.06",
     "/fallback/",
     "/settings/",
     "/product-template.html",
-    "api/products/35.json"
-  ],
-  precache_no_dependency_urls = [
+    "api/products/35.json",
     "categories/",
     "cart/",
     "js/app/categories.js",
@@ -28,10 +26,12 @@ const version = "v4.06",
     "js/app/product.js",
     "js/app/settings.js",
     "images/offline-product.jpg",
+    "html/app/shell.html",
+    "html/templates/product.template.html",
+    "html/templates/category.template.html",
     "images/originals/Addison-Traditional-Style-Dining-Room-Furniture.jpg"
   ],
   preCacheName = "precache-" + version,
-  preCacheNoDependencyName = "precache-no-dependency-" + version,
   dynamicCacheName = "dynamic-cache-" + version,
   productsCacheName = "products-cache-" + version,
   productImagesCacheName = "product-image-cache-" + version,
@@ -65,36 +65,26 @@ const version = "v4.06",
   PRODUCTS_KEY = "products-key",
   MAX_LIST_CACHE = 60;
 
-/*
-
-
-
-  */
-
-
 
 self.addEventListener( "install", event => {
 
   self.skipWaiting();
 
   event.waitUntil(
-    //pre-cache
-    //on install as a dependency
+
     caches.open( preCacheName ).then( cache => {
-      //won't delay install completing and won't cause installation to
-      //fail if caching fails.
-      //the difference is as dependency returns a Promise, the
-      //no dependency does not.
-      //on install not as dependency (lazy-load)
-      console.log( "caches add as no-dependency" );
 
-      cache.addAll( precache_no_dependency_urls );
+      cacheList.forEach(url => {
 
-      console.log( "caches add as dependency" );
+        cache.add(url)
+          .catch(err => {
+            console.log("precache Error: ", url);
+            console.error(err);
+          });
 
-      return cache.addAll( precache_urls );
+      });
 
-    } )
+    })
 
   );
 
@@ -106,26 +96,7 @@ self.addEventListener( "activate", event => {
 
   event.waitUntil(
 
-    //wholesale purge of previous version caches
-    caches.keys().then( cacheNames => {
-      cacheNames.forEach( value => {
-
-        if ( value.indexOf( version ) < 0 ) {
-          caches.delete( value );
-        }
-
-      } );
-
-      console.log( "service worker activated" );
-
-      return;
-
-    } )
-    .then( () => {
-
-      return getTemplates();
-
-    } )
+    getTemplates()
     .then( () => {
 
       return updateCachedData();
@@ -134,8 +105,8 @@ self.addEventListener( "activate", event => {
     .then( () => {
 
       return renderSite();
-    } )
 
+    } )
 
   );
 
@@ -168,6 +139,9 @@ self.addEventListener( "fetch", event => {
   );
 
 } );
+
+self.addEventListener('message', handleMessage);
+
 
 function handleResponse( event ) {
 
@@ -558,3 +532,24 @@ function getHTMLAsset( slug ) {
     } );
 
 }
+
+
+/* Message Handler */
+function handleMessage(event) {
+
+  console.log("service worker received: ");
+  console.log(event.data);
+  console.log("----------------------------");
+
+  if (typeof event.data === "object") {
+
+    data = event.data;
+
+
+  }
+
+}
+
+//offline cache handlers
+
+
