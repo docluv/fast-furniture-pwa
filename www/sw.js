@@ -612,8 +612,6 @@ function postMessage(msg) {
 }
 
 
-
-
 function getCategoryTemplate() {
 
   return fetch("templates/category.html")
@@ -780,6 +778,9 @@ function getTemplates() {
 
       return getHTMLAsset("html/app/shell.html")
         .then(html => {
+
+          html = html || "";
+
           templates.shell = html.replace("{{{body}}}", "<%template%>");
         });
 
