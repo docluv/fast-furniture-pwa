@@ -44,8 +44,8 @@
             <a href="" class="navbar-brand">
                 <img src="img/fast-furniture-logo.gif" alt="Fast Furniture" class="img-fluid">
             </a>
-            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false"
-                aria-label="Toggle navigation">
+            <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav"
+                aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
                 <span class="navbar-toggler-icon"></span>
             </button>
             <div class="collapse navbar-collapse d-flex justify-content-end" id="navbarNav">
@@ -298,13 +298,15 @@
                                 <input class="col-sm-12 " type="text" placeholder="Name" name="contact-name" />
                             </div>
                             <div class="col-sm-11 form-group">
-                                <input class="col-sm-12 " type="email" placeholder="Email Address" name="contact-email" />
+                                <input class="col-sm-12 " type="email" placeholder="Email Address"
+                                    name="contact-email" />
                             </div>
                             <div class="col-sm-11 form-group">
                                 <textarea class="col-sm-12 " rows="3" name="contact-message"></textarea>
                             </div>
                             <div class="col-sm-11 form-group">
-                                <input type="submit" value="Connect" class="btn btn-info pull-right" />
+                                <button type="submit" value="Connect"
+                                    class="btn btn-info btn-connect pull-right">Connect</button>
                             </div>
                         </form>
                     </div>
@@ -314,39 +316,45 @@
         </div>
     </footer>
 
-    <div class="ath-container banner-bottom-center">
-        <div class="ath-banner">
-            <div class="ath-banner-title">
-                <p>Install Fast Furniture?</p>
+    <div class="modal animated fadeIn a2hs-cta" tabindex="-1" role="dialog" aria-modal="true">
+        <div class="modal-dialog modal-dialog-centered" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <div class="col-12 d-flex justify-content-center">
+                        <img src="meta/favicon-32x32.png" srcset="
+                  meta/favicon-96x96.png 96w,
+                  meta/favicon-32x32.png 32w
+                " sizes="(max-width: 1024px) 32px, 96px" alt="Fast Furniture" />
+                    </div>
+                </div>
+                <div class="modal-body">
+                    <p>Install Fast Furniture</p>
+                </div>
+                <div class="modal-footer justify-content-center">
+                    <button type="button" class="btn btn-link btn-a2hs-cancel">No Now</button>
+                    <button type="button" class="btn btn-primary btn-a2hs-confirm">Install</button>
+                </div>
             </div>
-            <div class="ath-banner-cell">
-                <button class="btn btn-cancel btn-link">Not Now</button>
-            </div>
-            <div class="ath-banner-cell">
-                <button class="btn btn-install btn-success">Install</button>
-            </div>
-
         </div>
     </div>
-
     <script>
-    var siteConfig = {
-      "apiBase": "api/",
-      "ClientId": "15elav51g5mlu99vl76ui8i6pb",
-      "region": "us-east-1",
-      "base": "/"
-    };
-  </script>
-<script src="js/app/libs/push-manager.js"></script>
+        var siteConfig = {
+            "apiBase": "api/",
+            "ClientId": "15elav51g5mlu99vl76ui8i6pb",
+            "region": "us-east-1",
+            "base": "/"
+        };
+    </script>
+    <script src="js/app/libs/push-manager.js"></script>
     <script src="js/libs/dollar-bill.js"></script>
     <script src="js/libs/addtohomescreen.js" type="application/javascript"></script>
-  <script src="js/libs/localforage.min.js" type="application/javascript"></script>
-  <script src="js/libs/lazy.images.js" type="application/javascript"></script>
-  <script src="js/libs/callbacks.js" type="application/javascript"></script>
-  <script src="js/app/services/offline.js" type="application/javascript"></script>
-  <script src="js/app/services/http.js" type="application/javascript"></script>
-  <script src="js/app/services/auth.js" type="application/javascript"></script>
-    
+    <script src="js/libs/localforage.min.js" type="application/javascript"></script>
+    <script src="js/libs/lazy.images.js" type="application/javascript"></script>
+    <script src="js/libs/callbacks.js" type="application/javascript"></script>
+    <script src="js/app/services/offline.js" type="application/javascript"></script>
+    <script src="js/app/services/http.js" type="application/javascript"></script>
+    <script src="js/app/services/auth.js" type="application/javascript"></script>
+
     <script src="js/app/app.js"></script>
 
 

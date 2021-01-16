@@ -157,6 +157,43 @@
 
     //contact handler
 
+    $(".btn-connect").on("click", handleContactSubmit);
+
+    function handleContactSubmit(e){
+
+        e.preventDefault();
+
+        love2dev.http.post({
+            "url": "https://y0u0oxb8o3.execute-api.us-east-1.amazonaws.com/area51/test",
+            "headers": {
+                "Authorization": "Bearer BlahBlahBlah"
+            },
+            "body": {
+                "contact-name": $("[name='contact-name']").value(),
+                "contact-email": $("[name='contact-email']").value(),
+                "contact-message": $("[name='contact-message']").value()
+            }
+        })
+        .then(response => {
+
+            if(response ){
+
+                response.json()
+                    .then(body => {
+
+                        alert(JSON.stringify(body));
+
+                    });
+
+            }
+
+        })
+        .catch(err => {
+            alert("this thing blew up!");
+        });
+
+        return false;
+    }
 
     // end contact handler
 
