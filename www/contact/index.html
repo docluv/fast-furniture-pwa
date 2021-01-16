@@ -4,10 +4,8 @@
 <head>
     <base href="/">
     <!-- Stylesheets -->
-    <link href='https://fonts.googleapis.com/css?family=Open+Sans:400italic,700italic,400,600,700,800' rel='stylesheet'
-        type='text/css'>
-    <link href='https://fonts.googleapis.com/css?family=Open+Sans+Condensed:700' rel='stylesheet' type='text/css'>
     <link href="css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="css/all.min.css">
     <link href="css/site.css" rel="stylesheet">
     <title>Fast Furniture - Your Progressive Web App Demonstration Site</title>
     <!-- Disable tap highlight on IE -->
@@ -17,15 +15,16 @@
     <!-- Add to homescreen for Chrome on Android -->
     <meta name="mobile-web-app-capable" content="yes">
     <meta name="application-name" content="Fast Furniture">
-    <link rel="icon" sizes="192x192" href="images/touch/chrome-touch-icon-192x192.png">
+    <link rel="icon" sizes="192x192" href="/meta/73e74bb7-b2a8-cc3f-e464-f700c9a4475a.webPlatform.png">
     <!-- Add to homescreen for Safari on iOS -->
-    <meta name="apple-mobile-web-app-capable" content="yes">
+
     <meta name="apple-mobile-web-app-status-bar-style" content="black">
     <meta name="apple-mobile-web-app-title" content="Fast Furniture">
-    <link rel="apple-touch-icon" href="images/touch/apple-touch-icon.png">
+
+    <link rel="apple-touch-icon" href="/meta/73e74bb7-b2a8-cc3f-e464-f700c9a4475a.webPlatform.png">
     <!-- Tile icon for Win8 (144x144 + tile color) -->
-    <meta name="msapplication-TileImage" content="images/touch/ms-touch-icon-144x144-precomposed.png">
-    <meta name="msapplication-TileColor" content="#fff">
+    <meta name="msapplication-TileImage" content="/meta/fast-furniture-144x144.png">
+    <meta name="msapplication-TileColor" content="#F6911E">
     <!-- Color the status bar on mobile devices -->
     <meta name="theme-color" content="#F6911E">
     <meta name="description" content="{{description}}">
@@ -228,15 +227,28 @@
             </div>
         </div>
     </footer>
+
     <script>
-        var scripts = [ "js/libs/jquery.small.js",
-            "js/libs/popper.min.js",
-            "js/libs/bootstrap.min.js",
-            "js/libs/quagga.min.js","js/app/app.js",
-            "js/app/contact.js"
-        ];
+        var siteConfig = {
+            "apiBase": "api/",
+            "ClientId": "15elav51g5mlu99vl76ui8i6pb",
+            "region": "us-east-1",
+            "base": "/"
+        };
     </script>
-    <script src="js/app/app.bootstrap.js"></script>
+
+    <script src="js/app/libs/push-manager.js"></script>
+    <script src="js/libs/dollar-bill.js"></script>
+    <script src="js/libs/addtohomescreen.js" type="application/javascript"></script>
+    <script src="js/libs/localforage.min.js" type="application/javascript"></script>
+    <script src="js/libs/lazy.images.js" type="application/javascript"></script>
+    <script src="js/libs/callbacks.js" type="application/javascript"></script>
+    <script src="js/app/services/offline.js" type="application/javascript"></script>
+    <script src="js/app/services/http.js" type="application/javascript"></script>
+    <script src="js/app/services/auth.js" type="application/javascript"></script>
+
+    <script src="js/app/app.js"></script>
+
 </body>
 
 </html>

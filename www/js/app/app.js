@@ -13,7 +13,7 @@
 
         if ( gdpr && acceptBtn ) {
 
-            gdpr.style.display = "flex";
+       //     gdpr.style.display = "flex";
 
             acceptBtn.addEventListener( "click", function () {
 
@@ -154,6 +154,11 @@
         }
 
     };
+
+    //contact handler
+
+
+    // end contact handler
 
     window.utils = utils;
     window.pushMgr = pushMgr;

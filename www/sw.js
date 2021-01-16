@@ -6,22 +6,26 @@ const siteConfig = {
 };
 
 importScripts(
-  siteConfig.base + "js/libs/localforage.min.js",
-  siteConfig.base + "js/libs/callbacks.js",
-  siteConfig.base + "js/libs/mustache.min.js",
-  siteConfig.base + "js/app/services/offline.js",
-  siteConfig.base + "js/app/services/http.js",
-  siteConfig.base + "js/app/services/auth.js",
-  siteConfig.base + "js/app/services/offline.js",
-  siteConfig.base + "js/app/services/cart.js"
+  "sw/push-mgr.js",
+  "js/libs/localforage.min.js",
+  "js/libs/localforage.min.js",
+  "js/libs/callbacks.js",
+  "js/libs/mustache.min.js",
+  "js/app/services/offline.js",
+  "js/app/services/http.js",
+  "js/app/services/auth.js",
+  "js/app/services/offline.js",
+  "js/app/services/cart.js"
 );
 
 const version = "v5.00",
+  noCacheList = ["cognito-idp"],
   cacheList = [
     "css/bootstrap.min.css",
     "css/site.css",
     "css/login.css",
-    "css/all.css",
+    "css/all.min.css",
+    "css/addtohomescreen.css",
     "js/app/libs/push-manager.js",
     "js/libs/dollar-bill.js",
     "js/libs/lazy.images.js",
@@ -56,17 +60,7 @@ const version = "v5.00",
   productsCacheName = "products-cache-" + version,
   productImagesCacheName = "product-image-cache-" + version,
   categoryCacheName = "category-cache-" + version,
-  responseManager = new ResponseManager([{
-      "route": "/product/.+/",
-      "cache": productsCacheName
-    },
-    {
-      "route": "/images/originals/.+/|/images/display/.+/|/images/mobile/.+/|/images/thumbnail/.+/",
-      "cache": productImagesCacheName
-    }
-  ]),
   pushManager = new PushManager(),
-  invalidationManager = new InvalidationManager(),
   routeRules = [{
     "route": /category\/\?/,
     "strategy": "fetchAndRenderResponseCache",
@@ -83,8 +77,36 @@ const version = "v5.00",
   STALE_KEY = "-expires",
   CATEGORIES_KEY = "categories-key",
   PRODUCTS_KEY = "products-key",
-  MAX_LIST_CACHE = 60;
+  MAX_LIST_CACHE = 60,
+  Content_Type = "Content-Type",
+  mime_types_helpers = {
+    "application/json": "json",
+    //  "multipart/form-data": "blob",
+    "image/jpg": "blob",
+    "image/png": "blob",
+    "image/gif": "blob",
+    "application/octet-stream": "blob"
+  },
+  image_mime_types = ["image/jpg",
+    "image/png",
+    "image/gif"
+  ],
+  MEDIA_STORAGE = "media-storage-",
+  INVALIDATE_PRECACHE = "invalidate-cache",
+  UPDATE_DATA = "update-data",
+  UPDATE_CACHE = "update-cache",
+  OFFLINE_QUEUE_KEY = "offline-queue",
+  OFFLINE_MSG_KEY = "offline-message",
+  DYNAMIC_CACHE = "dynamic-cache";
 
+
+let onlineState = {
+    online: true,
+    serverState: true,
+    available: true
+  },
+  sync_queue,
+  profile;
 
 self.addEventListener("install", event => {
 
@@ -92,17 +114,9 @@ self.addEventListener("install", event => {
 
   event.waitUntil(
 
-    caches.open(preCacheName).then(cache => {
+    cacheList.forEach(url => {
 
-      cacheList.forEach(url => {
-
-        cache.add(url)
-          .catch(err => {
-            console.log("precache Error: ", url);
-            console.error(err);
-          });
-
-      });
+      cacheOrUpdate(url, preCacheName);
 
     })
 
@@ -113,6 +127,10 @@ self.addEventListener("install", event => {
 /* Clean up legacy named caches */
 
 self.addEventListener("activate", event => {
+
+  if (self.clients && clients.claim) {
+    clients.claim();
+  }
 
   event.waitUntil(
 
@@ -150,11 +168,11 @@ function getCacheName(url) {
 
 }
 
-self.addEventListener("fetch", event => {
+self.addEventListener("fetch", function (e) {
 
-  event.respondWith(
+  e.respondWith(
 
-    handleResponse(event)
+    handleFetch(e.request)
 
   );
 
@@ -162,89 +180,6 @@ self.addEventListener("fetch", event => {
 
 self.addEventListener('message', handleMessage);
 
-
-function handleResponse(event) {
-
-  if (event.request.method === 'GET') {
-
-    let cacheName = getCacheName(event.request.url);
-
-    let rule = testRequestRule(event.request.url, routeRules);
-
-    rule = rule || {};
-
-    switch (rule.strategy) {
-
-      case "cacheFallingBackToNetwork":
-
-        return responseManager.cacheFallingBackToNetworkCache(event.request, cacheName);
-
-      case "fetchAndRenderResponseCache":
-
-        return responseManager.fetchAndRenderResponseCache({
-            request: event.request,
-            pageURL: rule.options.pageURL,
-            template: rule.options.template,
-            api: rule.options.api,
-            cacheName: cacheName
-          })
-          .then(response => {
-
-            invalidationManager.cacheCleanUp();
-
-            return response;
-
-          });
-
-      case "cacheOnly":
-
-        return responseManager.cacheOnly(event.request, cacheName)
-          .then(response => {
-
-            invalidationManager.cacheCleanUp(cacheName);
-
-            return response;
-
-          });
-
-      case "networkOnly":
-
-        return responseManager.networkOnly(event.request);
-
-      case "cacheFallingBackToNetworkCache":
-      default:
-
-        return responseManager.cacheFallingBackToNetworkCache(event.request, cacheName)
-          .then(response => {
-
-            invalidationManager.cacheCleanUp(cacheName);
-
-            return response;
-
-          });
-
-    }
-
-  } else {
-    return fetch(event.request);
-  }
-
-}
-
-
-// Promise.race is no good to us because it rejects if
-// a promise rejects before fulfilling. Let's make a proper
-// race function:
-function promiseAny(promises) {
-  return new Promise((resolve, reject) => {
-    // make sure promises are all promises
-    promises = promises.map(p => Promise.resolve(p)); // resolve this promise as soon as one resolves
-    promises.forEach(p => p.then(resolve)); // reject if all promises reject
-    promises
-      .reduce((a, b) => a.catch(() => b))
-      .catch(() => reject(Error("All failed")));
-  });
-}
 
 //Push Stuff
 self.addEventListener("pushsubscriptionchange", event => {
@@ -254,36 +189,430 @@ self.addEventListener("pushsubscriptionchange", event => {
 });
 
 
-function testRequestRule(url, rules) {
+function handleFetch(request) {
 
-  for (let i = 0; i < rules.length - 1; i++) {
+  if (request.method.toUpperCase() === "GET") {
+    /* check the cache first, then hit the network */
 
-    if (rules[i].route.test(url)) {
-      return rules[i];
+    return caches.match(request, {
+        ignoreSearch: true
+      })
+      .then(function (response) {
+
+        return response || fetchRequest(request);
+
+      });
+
+  } else {
+    return fetchRequest(request);
+  }
+
+}
+
+function fetchRequest(request) {
+
+  let hasTimedOut = false;
+
+  const controller = new AbortController();
+
+  const timeoutId = setTimeout(() => {
+
+    hasTimedOut = true;
+    controller.abort();
+
+  }, 30000);
+
+  controller.signal.addEventListener('abort', () => {
+    console.log(`Abort event fired on signal. Aborting execution on timer ${timeoutId}.`);
+    clearTimeout(timeoutId);
+    hasTimedOut = true;
+  });
+
+  return fetch(request.clone(), {
+      signal: controller.signal
+    })
+    .then(response => {
+
+      clearTimeout(timeoutId);
+
+      if (response && [0, 200].includes(response.status)) {
+
+        if (!onlineState.available) {
+          //trigger cached queue to process
+
+          onlineState = {
+            online: true,
+            serverState: true,
+            available: true
+          };
+
+          postMessage({
+            "onlineState": true,
+            "state": onlineState
+          });
+
+          self.onlineStatus.saveOnlineState({
+            "onlineState": true,
+            "state": onlineState
+          });
+
+          processOfflineQueue();
+
+        }
+
+      }
+
+      return checkCanCache(request, response.clone())
+        .then(() => {
+
+          return response;
+
+        });
+
+    })
+    .catch(err => {
+
+      console.info(request.url);
+      console.info(err);
+
+      console.log("hasTimedOut: ", hasTimedOut);
+
+      if (onlineState.available) {
+
+        onlineState = {
+          online: false,
+          serverState: false,
+          available: false
+        };
+
+        postMessage({
+          "onlineState": false,
+          "state": onlineState
+        });
+
+        self.onlineStatus.saveOnlineState({
+          "onlineState": false,
+          "state": onlineState
+        });
+
+      }
+
+      if (request.method === "POST" || request.method === "PUT" || request.method === "DELETE") {
+
+        //cache request for later
+
+        return saveRequestToOfflineQueue(request);
+
+      } else if (request.method === "GET") {
+        //TODO: only return HTML for doc request 
+
+        if (!isNotDoc(request.url)) {
+
+          return caches.match("/offline");
+          // .then( function ( response ) {
+
+          //   if (response){
+
+          //   return response.text()
+          //     .then( html => {
+
+          //       return new Response( html, {
+          //         status: 200,
+          //         statusText: 'Service Unavailable',
+          //         headers: new Headers( {
+          //           'Content-Type': 'text/html'
+          //         } )
+          //       } );
+          //     } );
+
+          //   }
+
+          // } );
+
+        } else {
+
+          return new Response("");
+
+        }
+
+      }
+
+    });
+
+}
+
+function isCacheWhiteList(url) {
+
+  let whitelist = true;
+
+  noCacheList.forEach(noCachePattern => {
+
+    if (url.includes(noCachePattern)) {
+      whitelist = false;
+    }
+
+  });
+
+  return whitelist;
+
+}
+
+function checkCanCache(request, response) {
+
+  let requestURL = new URL(request.url);
+
+  if (requestURL.origin === location.origin &&
+    request.method.toLowerCase() === "get" &&
+    !request.url.includes("api") &&
+    isCacheWhiteList(request.url)) {
+
+    return cacheResponse(request.url, response);
+
+  }
+
+  return Promise.resolve(response);
+
+}
+
+function cacheResponse(url, response) {
+
+  return caches.open("dynamic").then(cache => {
+
+    return cache.put(url, response)
+      .catch(err => {
+        console.log("dynamic Error: ", url);
+        console.error(err);
+      });
+
+  })
+
+}
+
+function cacheOrUpdate(url, cacheName){
+
+  const now = Date.now();
+  //only cache photo if it is not already cached
+  return caches.match(url)
+    .then(response => {
+
+      if (!response) {
+
+        return caches.open(cacheName)
+          .then(cache => {
+            return cache.add(url);
+          })
+          .catch(err => {
+            console.info("failed to cache ", url);
+          });
+
+      } else {
+
+        let date = response.headers.get("Date") || response.headers.get("date"),
+          ttl = response.headers.get("cache-control") || 
+                response.headers.get("Cache-Control");
+
+        if (date && ttl) {
+
+          ttl = ttl.replace("max-age=", "");
+
+          let dt = new Date(date).getTime();
+
+          if (now >= dt + (ttl * 1000)) {
+
+            return caches.open(cacheName)
+              .then(cache => {
+                return cache.add(url);
+              })
+              .catch(err => {
+                console.info("failed to update ", url);
+              });
+
+          }
+
+        }
+
+      }
+
+    });
+
+}
+
+function isNotDoc(url) {
+  return /(.css|.js|.jpg|.jpeg|.gif|.png|.webp|.woff|.woff2|.svg)$/.test(url);
+}
+
+function requestHelper(ContentType) {
+
+  let helper = "text";
+
+  for (const key in mime_types_helpers) {
+
+    if (ContentType.includes(key)) {
+      helper = mime_types_helpers[key];
     }
 
   }
 
+  return helper;
+
+}
+
+/**
+ * Serializes a Request into a plain JS object.
+ * 
+ * @param request
+ * @returns Promise
+ */
+function serializeRequest(request) {
+
+  let serialized = {
+    url: request.url,
+    headers: serializeHeaders(request.headers),
+    method: request.method,
+    mode: request.mode,
+    credentials: request.credentials,
+    cache: request.cache,
+    redirect: request.redirect,
+    referrer: request.referrer
+  };
+
+  if (['PUSH', 'POST', 'DELETE'].includes(request.method.toUpperCase())) {
+
+    let helper = requestHelper(request.headers.get(Content_Type));
+
+    if (helper) {
+
+      return request.clone()[helper]().then(function (body) {
+
+        serialized.body = body;
+
+        return serialized;
+
+      });
+
+    }
+
+    return Promise.resolve(serialized);
+
+  }
+
+  return Promise.resolve(serialized);
+
+}
+
+/**
+ * Serializes a Request into a plain JS object.
+ * 
+ * @param request
+ * @returns Promise
+ */
+function deserializeRequest(srcRequest) {
+
+  let request = new Request(srcRequest.url, {
+    headers: srcRequest.headers,
+    method: srcRequest.method,
+    mode: srcRequest.mode,
+    credentials: srcRequest.credentials,
+    cache: srcRequest.cache,
+    redirect: srcRequest.redirect,
+    referrer: srcRequest.referrer
+  });
+
+  if (srcRequest.body) {
+
+    for (const key in mime_types_helpers) {
+
+      if (mime_types_helpers.hasOwnProperty(key)) {
+
+        if (srcRequest.headers['content-type'].includes(key)) {
+
+          if (key === "application/json") {
+            request.body = JSON.stringify(srcRequest.body);
+          } else if (mime_types_helpers[key] === "blob") {
+
+            request.body = new Blob(srcRequest.body);
+
+          }
+
+        }
+
+        if (srcRequest.headers['content-type'].includes()) {
+          request.body = JSON.stringify(srcRequest.body);
+        } else {
+
+          request.body = srcRequest.body;
+        }
+
+      }
+
+    }
+
+  }
+
+  if (request.headers.Authorization) {
+
+    return love2dev.auth.getIdToken()
+      .then(token => {
+
+        if (token) {
+
+          request.headers.Authorization = "Bearer " + token;
+
+          return request;
+
+        } else {
+          return null;
+        }
+
+      });
+
+  }
+
+  return Promise.resolve(request);
+
 }
 
 
-function getParameterByName(name, url) {
+/**
+ * Serializes headers into a plain JS object
+ * 
+ * @param headers
+ * @returns object
+ */
+function serializeHeaders(headers) {
 
-  name = name.replace(/[\[\]]/g, "\\$&");
-
-  var regex = new RegExp("[?&]" + name + "(=([^&#]*)|&|#|$)"),
-    results = regex.exec(url);
-
-  if (!results) {
-    return null;
+  let serialized = {};
+  // `for(... of ...)` is ES6 notation but current browsers supporting SW, support this
+  // notation as well and this is the only way of retrieving all the headers.
+  for (let entry of headers.entries()) {
+    serialized[entry[0]] = entry[1];
   }
 
-  if (!results[2]) {
-    return '';
-  }
+  return serialized;
 
-  return decodeURIComponent(results[2].replace(/\+/g, " "));
 }
+
+function setTTL(options) {
+
+  let ttlDt = new Date(),
+    _url = new URL(options._url);
+
+  _url = _url.href.replace(_url.orgin, "");
+
+  ttlDt.setSeconds(ttlDt.getSeconds() + (options.ttl / 1000));
+
+  return localforage.setItem(options.key + _url, ttlDt);
+}
+
+
+function postMessage(msg) {
+
+  self.clients.matchAll().then(all => all.map(client => client.postMessage(msg)));
+
+}
+
+
+
 
 function getCategoryTemplate() {
 
@@ -393,17 +722,35 @@ function renderSite() {
 
       categories.forEach(category => {
 
-        pages.push(renderPage("category/" +
-          category.Slug + "/", "category", category));
+        for (let index = 0; index < category.Products.length; index++) {
+
+          category.Products[index].slug = makeSlug(category.Products[index].Name);
+          category.Products[index].photo = category.Products[index].slug + ".jpg";
+
+          let slug = "images/display/" + category.Products[index].photo;
+
+          cacheOrUpdate(slug, "fast-furniture-pages");
+
+        }
+
+        pages.push(renderPage("category/" + category.Slug + "/", "category", category));
+
 
       });
 
-      products.forEach(product => {
 
-        pages.push(renderPage("product/" +
-          product.Slug + "/", "product", product));
+      //limit to 100 for now.
+      //found caching all 5500 slowed the site down...time to investigate
+      for (let index = 0; index < 100; index++) {
+        
+        let product = products[index];
 
-      });
+        product.slug = makeSlug(product.Name);
+        product.photo = product.slug + ".jpg";
+
+        pages.push(renderPage("product/" + product.slug + "/", "product", product));
+
+      }
 
       return Promise.all(pages);
 
@@ -433,7 +780,7 @@ function getTemplates() {
 
       return getHTMLAsset("html/app/shell.html")
         .then(html => {
-          templates.shell = html;
+          templates.shell = html.replace("{{{body}}}", "<%template%>");
         });
 
     })
@@ -445,6 +792,22 @@ function getTemplates() {
         });
 
     });
+
+}
+
+function makeSlug(src) {
+
+  if (typeof src === "string") {
+
+    return src.replace(/ +/g, "-")
+      .replace(/\'/g, "")
+      .replace(/[^\w-]+/g, "")
+      .replace(/-+/g, "-")
+      .toLowerCase();
+
+  }
+
+  return "";
 
 }
 
@@ -472,7 +835,7 @@ function renderPage(slug, templateName, data) {
 
 function updateCachedData() {
 
-  return fetch("api/categories.json")
+  return fetch("api/home-categories.json")
     .then(response => {
 
       if (response && response.ok) {
@@ -482,7 +845,7 @@ function updateCachedData() {
       } else {
         throw {
           status: response.status,
-          message: "failed to fetch session data"
+          message: "failed to fetch category data"
         };
       }
 
@@ -498,8 +861,7 @@ function updateCachedData() {
 
       dt.setMinutes(dt.getMinutes() + MAX_LIST_CACHE);
 
-      return localforage
-        .setItem(CATEGORIES_KEY + STALE_KEY, dt);
+      return localforage.setItem(CATEGORIES_KEY + STALE_KEY, dt);
 
     })
     .then(() => {
@@ -515,7 +877,7 @@ function updateCachedData() {
       } else {
         throw {
           status: response.status,
-          message: "failed to fetch category data"
+          message: "failed to fetch products data"
         };
       }
 
@@ -531,8 +893,7 @@ function updateCachedData() {
 
       dt.setMinutes(dt.getMinutes() + MAX_LIST_CACHE);
 
-      return localforage
-        .setItem(PRODUCTS_KEY + STALE_KEY, dt);
+      return localforage.setItem(PRODUCTS_KEY + STALE_KEY, dt);
 
     });
 
@@ -573,7 +934,7 @@ function handleMessage(event) {
 //offline cache handlers
 /* Cache/Queue Mgt */
 
-if (SyncManager) {
+if (SyncManager && registration) {
 
   registration.sync.register('bkg-data-sync');
 

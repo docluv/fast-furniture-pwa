@@ -178,16 +178,26 @@
         </div>
     </footer>
     <script>
-        var scripts = ["/js/libs/jquery.small.js",
-        "js/libs/popper.min.js",
-            "/js/libs/bootstrap.min.js",
-            "/js/libs/form.submission.js",
-            "/js/app/app.js",
-            "/js/app/register.js"
-        ];
+        var siteConfig = {
+            "apiBase": "api/",
+            "ClientId": "15elav51g5mlu99vl76ui8i6pb",
+            "region": "us-east-1",
+            "base": "/"
+        };
     </script>
 
-    <script src="/js/app/app.bootstrap.js"></script>
+    <script src="js/app/libs/push-manager.js"></script>
+    <script src="js/libs/dollar-bill.js"></script>
+    <script src="js/libs/addtohomescreen.js" type="application/javascript"></script>
+    <script src="js/libs/localforage.min.js" type="application/javascript"></script>
+    <script src="js/libs/lazy.images.js" type="application/javascript"></script>
+    <script src="js/libs/callbacks.js" type="application/javascript"></script>
+    <script src="js/app/services/offline.js" type="application/javascript"></script>
+    <script src="js/app/services/http.js" type="application/javascript"></script>
+    <script src="js/app/services/auth.js" type="application/javascript"></script>
+
+    <script src="js/app/app.js"></script>
+
 </body>
 
 </html>
