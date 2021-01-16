@@ -1,0 +1,40 @@
+<section class="cart-wrapper col-12 d-flex justify-content-center my-0 my-lg-2 flex-wrap p-0">
+    {{#cart_items}}
+    <div class="col-12 d-flex justify-content-center py-1 mb-2 cart-item p-0">
+        <div class="cart-row text-dark col-12 p-0 my-0 mx-lg-3 d-flex flex-column align-items-center">
+            <div class="cart-list-item-body d-flex align-items-center col-12 px-0">
+                <a href="product/{{slug_key}}"
+                    class="col-3 col-md-2 p-0 d-flex justify-items-center align-items-center">
+                    {{#image}} {{#thumbnail}}
+                    <img src="{{{src}}}" alt="{{productName}}" class="img-thumbnail" />
+                    {{/thumbnail}} {{^thumbnail}}&nbsp;{{/thumbnail}} {{/image}}
+                    {{^image}}&nbsp;{{/image}}
+                </a>
+                <div class="col-9 d-flex flex-wrap p-0 border-bottom">
+                    <div class="cart-text col-12">
+                        <b>{{productName}}</b>
+                    </div>
+                    <div class="col-12 d-flex px-0">
+                        <div class="col-8 mr-1">&nbsp;</div>
+                        <div class="col-4 pr-0 text-right">
+                            <b><span class="mr-2">Total</span>${{total}}</b>
+                        </div>
+                    </div>
+                    <div class="col-12 px-0 d-flex">
+                        <button class="btn btn-link delete-cart" assetId="{{assetId}}">
+                            remove
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    {{/cart_items}} {{^cart_items}}
+    <div class="col-12 d-flex justify-content-center py-1 mb-2">
+        <div class="d-flex align-items-center col-12 px-0">Your Cart is Empty</div>
+    </div>
+    {{/cart_items}}
+    <div class="col-12 d-flex justify-content-end py-3 mb-1 font-20 cart-total">
+        <p class="cart-total">Total: ${{total}}</p>
+    </div>
+</section>

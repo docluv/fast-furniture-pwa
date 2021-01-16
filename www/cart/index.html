@@ -37,7 +37,7 @@
     <link href="/humans.txt" rel="author">
 </head>
 
-<body>
+<body ontouchstart="">
     <header class="primary-header">
         <nav class="navbar fixed-top navbar-expand-lg navbar-light">
             <a href="/" class="navbar-brand">
@@ -226,9 +226,23 @@
             </div>
         </div>
     </footer>
-    <script src="js/app/libs/push-manager.js"></script>
-    <script src="js/libs/jquery.small.js"></script>
-    <script src="js/libs/popper.min.js"></script>
+    <script>
+    var siteConfig = {
+      "apiBase": "api/",
+      "ClientId": "15elav51g5mlu99vl76ui8i6pb",
+      "region": "us-east-1",
+      "base": "/"
+    };
+  </script>
+<script src="js/app/libs/push-manager.js"></script>
+    <script src="js/libs/dollar-bill.js"></script>
+    <script src="js/libs/addtohomescreen.js" type="application/javascript"></script>
+  <script src="js/libs/localforage.min.js" type="application/javascript"></script>
+  <script src="js/libs/lazy.images.js" type="application/javascript"></script>
+  <script src="js/libs/callbacks.js" type="application/javascript"></script>
+  <script src="js/app/services/offline.js" type="application/javascript"></script>
+  <script src="js/app/services/http.js" type="application/javascript"></script>
+  <script src="js/app/services/auth.js" type="application/javascript"></script>
     <script src="js/libs/bootstrap.min.js"></script>
     <script src="js/libs/quagga.min.js"></script>
     <script src="js/libs/addtohomescreen.js"></script>

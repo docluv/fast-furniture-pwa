@@ -36,7 +36,7 @@
     <link href="humans.txt" rel="author">
 </head>
 
-<body>
+<body ontouchstart="" ontouchstart="">
 
     <header class="primary-header">
         <nav class="navbar fixed-top navbar-expand-lg navbar-light">
@@ -173,15 +173,24 @@
         </div>
     </footer>
     <script>
-        var scripts = ["js/libs/jquery.small.js",
-            "js/libs/popper.min.js",
-            "js/libs/bootstrap.min.js",
-            "js/libs/quagga.min.js","js/app/app.js",
-            "js/app/{{name}}.js"
-        ];
-    </script>
+    var siteConfig = {
+      "apiBase": "api/",
+      "ClientId": "16mv8felr1mba0re1kb4nmsqeo",
+      "region": "us-east-1",
+      "base": "/"
+    };
+  </script>
+<script src="js/app/libs/push-manager.js"></script>
+    <script src="js/libs/dollar-bill.js"></script>
+    <script src="js/libs/addtohomescreen.js" type="application/javascript"></script>
+    <script src="js/libs/localforage.min.js" type="application/javascript"></script>
+    <script src="js/libs/lazy.images.js" type="application/javascript"></script>
+    <script src="js/libs/callbacks.js" type="application/javascript"></script>
+    <script src="js/app/services/offline.js" type="application/javascript"></script>
+    <script src="js/app/services/http.js" type="application/javascript"></script>
+    <script src="js/app/services/auth.js" type="application/javascript"></script>
+    <script src="js/app/app.js"></script>
 
-    <script src="js/app/app.bootstrap.js"></script>
 </body>
 
 </html>

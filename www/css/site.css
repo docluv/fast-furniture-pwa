@@ -737,6 +737,10 @@ ul.share-buttons li {
     display: inline;
 }
 
+.footer-prompt{
+    display: none;
+}
+
 @media (min-width: 720px) {
     .social-wrapper {
         display: inline-block;

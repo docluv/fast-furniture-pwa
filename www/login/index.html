@@ -1,99 +1,189 @@
-<!doctype html>
+<!DOCTYPE html>
 <html lang="en">
 
 <head>
-    <base href="/">
-    <!-- Stylesheets -->
-    <link href="css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="css/all.min.css">
-    <link href="css/site.css" rel="stylesheet">
-    <link href="css/app/views/login.css" rel="stylesheet">
-    <title>Fast Furniture - Your Progressive Web App Demonstration Site</title>
-    <!-- Disable tap highlight on IE -->
-    <meta name="msapplication-tap-highlight" content="no">
-    <!-- Web Application Manifest -->
-    <link rel="manifest" href="manifest.json">
-    <!-- Add to homescreen for Chrome on Android -->
-    <meta name="mobile-web-app-capable" content="yes">
-    <meta name="application-name" content="Fast Furniture">
-    <link rel="icon" sizes="192x192" href="/meta/73e74bb7-b2a8-cc3f-e464-f700c9a4475a.webPlatform.png">
-    <!-- Add to homescreen for Safari on iOS -->
+  <meta charset="utf-8" />
+  <base href="/" />
 
-    <meta name="apple-mobile-web-app-status-bar-style" content="black">
-    <meta name="apple-mobile-web-app-title" content="Fast Furniture">
+  <link href="login/" rel="canonical" />
 
-    <link rel="apple-touch-icon" href="/meta/73e74bb7-b2a8-cc3f-e464-f700c9a4475a.webPlatform.png">
-    <!-- Tile icon for Win8 (144x144 + tile color) -->
-    <meta name="msapplication-TileImage" content="/meta/fast-furniture-144x144.png">
-    <meta name="msapplication-TileColor" content="#F6911E">
-    <!-- Color the status bar on mobile devices -->
-    <meta name="theme-color" content="#F6911E">
-    <meta name="description" content="{{description}}">
-    <!-- Mobile Meta -->
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <!-- Favicon -->
-    <link href="favicon.ico" rel="shortcut icon">
-    <link href="humans.txt" rel="author">
+  <link href="css/bootstrap.min.css" rel="stylesheet" />
+  <link href="css/all.min.css" rel="stylesheet" />
+
+
+  <link href="css/mdc.snackbar.min.css" rel="stylesheet" />
+  <link href="css/site.css" rel="stylesheet" />
+  <link href="css/login.css" rel="stylesheet" />
+
+  <title>Fast Furniture Login</title>
+  <meta name="description" content="Fast Furniture Login" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no, viewport-fit=cover" />
+
+  <link href="favicon.ico" rel="shortcut icon" />
+
+  <meta name="theme-color" content="#2e8aff" />
+
+  <link rel="apple-touch-icon" href="app/meta/ios/ios-appicon-180-180.jpg" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+
+  <meta content="black" name="apple-mobile-web-app-status-bar-style" />
+
+  <link href="manifest.json" rel="manifest" />
 </head>
 
-<body class="ff-login">
-    <main class="d-flex flex-row justify-content-center vh-100 align-items-center">
-        <div class="z-depth-2 grey lighten-5 flex-center login-container shadow p-3 mb-5 login-form ff-login">
-            <header class="text-center">
-                <div class="brand-logo bg-white">
-                    <img src="img/fast-furniture-logo.gif" alt="Fast Furniture" sizes="(max-width: 250px) 40vw, 120px">
-                </div>
-            </header>
-
-            <form class="col s12 loginform" method="post">
-                <div class="form-group">
-                    <label for="Username">Enter your email</label>
-                    <div class="input-group">
-                        <div class="input-group-prepend">
-                            <span class="input-group-text far fa-envelope"></span>
-                        </div>
-                        <input class="form-control validate" type="email" name="Username" required autofocus />
-                        <div class="invalid-tooltip">
-                            Please enter your email address.
-                        </div>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <label for="Password">Enter your password</label>
-                    <div class="input-group">
-                        <div class="input-group-prepend">
-                            <span class="input-group-text fas fa-key"></span>
-                        </div>
-                        <input class="form-control validate" type="password" name="Password" required />
-                        <div class="invalid-tooltip">
-                            Please enter your password.
-                        </div>
-                    </div>
-                </div>
-                <div class="form-group">
-                    <a class="btn btn-link" href="login/password/recover/">Forgot Password</a>
-                </div>
-                <div class="form-group">
-                    <a href="register/" class="btn btn-link">Create account</a>
-                </div>
-                <div class="form-group ">
-                    <button type="submit" name="btn_login"
-                        class="btn btn-large btn-login waves-effect ghost right col-sm-12">Login</button>
-                </div>
-            </form>
+<body>
+  <main class="main-content px-2 py-0 d-flex justify-content-center align-items-start">
+    <div class="z-depth-2 d-flex flex-column login-container shadow mb-5 login-form form-container bg-white">
+      <header class="text-center">
+        <div class="bg-white">
+          <div class="col-12 mb-1">
+            <img src="/img/fast-furniture-logo.gif" alt="Fast Furniture" />
+          </div>
+          <div class="col-12">
+            <h1>Login</h1>
+          </div>
         </div>
-        <div class="row flex-container flex-around auth-providers"></div>
-    </main>
+      </header>
+      <form class="col-12 loginform" method="post">
+        <div class="md-form login-form-error d-none">
+          <h3 class="error_message text-danger"></h3>
+        </div>
+        <div class="md-form">
+          <input type="text" class="form-control validate" name="Username" id="Username" tabindex="10" required
+            autofocus spellcheck="false" autocomplete="username" autocapitalize="false" minlength="7" />
+          <label for="Username">Username</label>
+        </div>
+        <div class="md-form">
+          <input type="password" class="form-control validate" name="Password" id="Password"
+            autocomplete="current-password" tabindex="20"
+            pattern="^(?=.*[0-9])(?=.*[!@#$%^&*])[a-zA-Z0-9!@#$%^&*]{8,20}$" required />
+          <label for="Password">Password</label>
+          <span class="show-password-btn" for="Password"><i class="far fa-eye"></i></span>
+        </div>
+        <div class="md-form text-center">
+          <button type="submit" name="btn_login" tabindex="100" disabled aria-disabled="true"
+            class="btn btn-large btn-login btn-success col-sm-12 col-lg-6 mx-auto">
+            Login
+          </button>
+        </div>
+        <div class="md-form text-center">
+          <a class="btn btn-site btn-site-link-primary col-sm-12 col-lg-3 mx-auto" href="login/forgot-password/">Forgot
+            Password</a>
+        </div>
+      </form>
+    </div>
 
-    <script>
-        var scripts = [
-            "js/libs/localforage.min.js",
-            "js/app/app.js",
-            "js/login.js"
-        ];
-    </script>
+    <div class="modal-bg challenge-background" role="dialog" aria-modal="true"></div>
 
-    <script src="js/app/app.bootstrap.js"></script>
+    <div class="modal fade modal-new-password-challenge" tabindex="-1" role="dialog">
+      <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+          <div class="modal-body">
+            <form class="col-12 challenge-form" method="">
+              <div class="row d-flex justify-content-center py-3">
+                <h1>Enter Your New Password</h1>
+              </div>
+              <div class="col-12 d-flex justify-content-center">
+                <p class="col-12">
+                  You have entered your temporary password. Now set your real
+                  password.
+                </p>
+              </div>
+              <div class="md-form challenge-form-error d-none">
+                <p class="challenge-error_message text-danger"></p>
+              </div>
+              <div class="md-form">
+                <input type="password" class="form-control validate" name="new_password" id="new_password"
+                  autocomplete="new-password" tabindex="220" required />
+                <label for="new_assword">New Password</label>
+                <span class="show-password-btn" for="new_password"><i class="far fa-eye"></i></span>
+              </div>
+              <div class="md-form">
+                <input type="password" class="form-control validate" name="confirm_new_assword" id="confirm_new_assword"
+                  autocomplete="new-password" tabindex="230" required />
+                <label for="confirm_new_assword">Confirm New Password</label>
+                <span class="show-password-btn" for="confirm_new_assword"><i class="far fa-eye"></i></span>
+              </div>
+              <div class="md-form">
+                <ul class="special-instructions">
+                  <li>must contain at least 8 characters</li>
+                  <li>must have one or more capital letters</li>
+                  <li>must have one or more numbers</li>
+                  <li>must have a special character ex: !@#$%^&*()</li>
+                </ul>
+              </div>
+              <div class="col-12 d-flex justify-content-center py-3 mb-5">
+                <button class="col-12 col-lg-6 btn btn-lg btn-rounded btn-site-primary btn-new_password-submit mr-2"
+                  tabindex="250" disabled aria-disabled="true">
+                  Submit
+                </button>
+              </div>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <div class="notification animated">
+    <div class="notification-padding"></div>
+    <div class="notification-body">
+      <div class="notification-title"></div>
+      <div class="notification-text"></div>
+    </div>
+    <div class="notification-close">X</div>
+  </div>
+  <div class="mdc-snackbar snackbar-confirm animated d-none">
+    <div class="mdc-snackbar__surface">
+      <div class="mdc-snackbar__label" role="status" aria-live="polite"></div>
+      <div class="mdc-snackbar__actions">
+        <button type="button" class="mdc-button mdc-snackbar__action">OK</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="notification animated">
+    <div class="notification-padding"></div>
+    <div class="notification-body">
+      <div class="notification-title"></div>
+      <div class="notification-text"></div>
+    </div>
+    <div class="notification-close">X</div>
+  </div>
+
+  <script>
+    var siteConfig = {
+      "apiBase": "https://Fast Furnituredev4.love2dev.com/api/",
+      "ClientId": "16mv8felr1mba0re1kb4nmsqeo",
+      "region": "us-east-1",
+      "base": "/"
+    };
+  </script>
+
+  <!--Core Scripts-->
+  <script src="js/libs/addtohomescreen.js" type="application/javascript"></script>
+  <script src="js/libs/localforage.min.js" type="application/javascript"></script>
+  <script src="js/libs/lazy.images.js" type="application/javascript"></script>
+  <script src="js/libs/callbacks.js" type="application/javascript"></script>
+  <script src="js/libs/mustache.min.js" type="application/javascript"></script>
+  <script src="js/libs/dollar-bill.js" type="application/javascript"></script>
+  <script src="js/app/ui/component.base.js" type="application/javascript"></script>
+  <script src="js/app/ui/modal.js" type="application/javascript"></script>
+  <script src="js/app/ui/prompt.js" type="application/javascript"></script>
+  <script src="js/app/services/offline.js" type="application/javascript"></script>
+  <script src="js/app/services/http.js" type="application/javascript"></script>
+  
+  <script src="js/app/services/auth.js" type="application/javascript"></script>
+  <script src="js/app/services/user.js" type="application/javascript"></script>
+  
+  <!--Page Service Scripts-->
+  <script src="js/libs/ui/show-password.js" type="application/javascript"></script>
+  <!--Core App Scripts-->
+  <script src="js/app.js" type="application/javascript"></script>
+  <script src="js/app/ui/profile-nav.js" type="application/javascript"></script>
+  <!--Controllers Scripts-->
+  <script src="js/app/controllers/login.js" type="application/javascript"></script>
+
 </body>
 
 </html>

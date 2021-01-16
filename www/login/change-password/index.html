@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="utf-8" />
+  <base href="/" />
+
+  <link href="login/" rel="canonical" />
+
+  <link href="css/bootstrap.min.css" rel="stylesheet" />
+  <link href="css/all.min.css" rel="stylesheet" />
+
+
+  <link href="css/mdc.snackbar.min.css" rel="stylesheet" />
+  <link href="css/site.css" rel="stylesheet" />
+  <link href="css/login.css" rel="stylesheet" />
+
+  <title>Fast Furniture Login</title>
+  <meta name="description" content="Fast Furniture Login" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, shrink-to-fit=no, viewport-fit=cover" />
+
+  <link href="favicon.ico" rel="shortcut icon" />
+
+  <meta name="theme-color" content="#2e8aff" />
+
+  <link rel="apple-touch-icon" href="app/meta/ios/ios-appicon-180-180.jpg" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+
+  <meta content="black" name="apple-mobile-web-app-status-bar-style" />
+
+  <link href="manifest.json" rel="manifest" />
+</head>
+
+<body>
+  <main class="main-content px-2 py-0 d-flex justify-content-center align-items-start">
+    <div
+      class="z-depth-2 d-flex flex-column login-container shadow p-3 mb-5 login-form form-container bg-white text-dark">
+      <header class="text-center">
+        <div class="bg-white">
+          <div class="col-12 mb-1">
+            <img src="/img/fast-furniture-logo.gif" alt="Fast Furniture" />
+          </div>
+          <div class="col-12">
+            <h1>Change Password</h1>
+          </div>
+        </div>
+      </header>
+
+      <form class="col-12 change_password_form" method="post">
+        <div class="md-form login-form-error d-none">
+          <h3 class="error_message text-danger"></h3>
+        </div>
+        <div class="md-form">
+          <input type="password" class="form-control validate" name="Current_Password" id="Current_Password"
+            tabindex="10" autofocus autocomplete="current-password" required />
+          <label for="Current_Password">Current Password</label>
+          <span class="show-password-btn" for="Current_Password"><i class="far fa-eye"></i></span>
+        </div>
+        <div class="md-form">
+          <input type="password" class="form-control validate" name="New_Password" tabindex="20"
+            autocomplete="new-password" required />
+          <label for="New_Password">New Password</label>
+          <ul>
+            <li>must contain at least 8 characters</li>
+            <li>must have one or more capital letters</li>
+            <li>must have one or more numbers</li>
+            <li>must have a special character ex: !@#$%^&*()</li>
+          </ul>
+        </div>
+        <div class="md-form text-center">
+          <button type="submit" name="btn_change_password" tabindex="10"
+            class="btn btn-large btn_change_password btn-success col-sm-12 col-lg-6 mx-auto">
+            Change Password
+          </button>
+        </div>
+      </form>
+    </div>
+  </main>
+
+  <div class="notification animated">
+    <div class="notification-padding"></div>
+    <div class="notification-body">
+      <div class="notification-title"></div>
+      <div class="notification-text"></div>
+    </div>
+    <div class="notification-close">X</div>
+  </div>
+  <div class="mdc-snackbar snackbar-confirm animated d-none">
+    <div class="mdc-snackbar__surface">
+      <div class="mdc-snackbar__label" role="status" aria-live="polite"></div>
+      <div class="mdc-snackbar__actions">
+        <button type="button" class="mdc-button mdc-snackbar__action">OK</button>
+      </div>
+    </div>
+  </div>
+
+  <div class="notification animated">
+    <div class="notification-padding"></div>
+    <div class="notification-body">
+      <div class="notification-title"></div>
+      <div class="notification-text"></div>
+    </div>
+    <div class="notification-close">X</div>
+  </div>
+
+  <script>
+    var siteConfig = {
+      "apiBase": "https://Fast Furnituredev4.love2dev.com/api/",
+      "ClientId": "16mv8felr1mba0re1kb4nmsqeo",
+      "region": "us-east-1",
+      "base": "/"
+    };
+  </script>
+
+  <!--Core Scripts-->
+  <script src="js/libs/addtohomescreen.js" type="application/javascript"></script>
+  <script src="js/libs/localforage.min.js" type="application/javascript"></script>
+  <script src="js/libs/lazy.images.js" type="application/javascript"></script>
+  <script src="js/libs/callbacks.js" type="application/javascript"></script>
+  <script src="js/libs/mustache.min.js" type="application/javascript"></script>
+  <script src="js/libs/dollar-bill.js" type="application/javascript"></script>
+  <script src="js/app/ui/component.base.js" type="application/javascript"></script>
+  <script src="js/app/ui/modal.js" type="application/javascript"></script>
+  <script src="js/app/ui/prompt.js" type="application/javascript"></script>
+  <script src="js/app/services/offline.js" type="application/javascript"></script>
+  <script src="js/app/services/http.js" type="application/javascript"></script>
+  <script src="js/app/services/data-service.js" type="application/javascript"></script>
+  <script src="js/app/services/auth.js" type="application/javascript"></script>
+  <script src="js/app/services/user.js" type="application/javascript"></script>
+  <script src="js/app/services/checkin.js" type="application/javascript"></script>
+  <script src="js/app/services/message.js" type="application/javascript"></script>
+  <!--Page Service Scripts-->
+  <script src="js/libs/ui/show-password.js" type="application/javascript"></script>
+  <!--Core App Scripts-->
+  <script src="js/app.js" type="application/javascript"></script>
+  <script src="js/app/ui/profile-nav.js" type="application/javascript"></script>
+  <!--Controllers Scripts-->
+  <script src="js/app/controllers/change-password.js" type="application/javascript"></script>
+
+</body>
+
+</html>
