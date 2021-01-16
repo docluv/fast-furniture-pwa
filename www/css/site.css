@@ -217,7 +217,19 @@ figcaption h3 {
     flex-direction: column;
     align-items: start;
     justify-content: start;
-    }
+}
+
+.productbox::before {
+    content: '';
+    height: 32px;
+    background-color: var(--site-primary);
+    width: 100%;
+}
+
+.productbox:hover::before {
+    background-color: var(--site-secondary);
+}
+
 
 .product-list>a {
     font-family: 'Oswald', Arial, sans-serif;
